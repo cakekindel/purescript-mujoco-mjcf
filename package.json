@@ -4,12 +4,13 @@
   "module": "index.js",
   "type": "module",
   "scripts": {
-    "fmt": "bun bun/fmt.js"
+    "fmt": "bun bun/fmt.js",
+    "spago": "spago"
   },
   "devDependencies": {
     "bun-types": "1.0.11",
     "purs-tidy": "^0.10.0",
-    "spago": "next"
+    "spago": "^1.0.0"
   },
   "peerDependencies": {
     "typescript": "^5.0.0"

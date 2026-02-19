@@ -1,24 +1,33 @@
 package:
+  name: mujoco-mjcf
+  publish:
+    version: '0.0.1'
+    license: 'GPL-3.0-or-later'
+    location:
+      githubOwner: 'cakekindel'
+      githubRepo: 'purescript-mujoco-mjcf'
   build:
+    censorProjectWarnings:
+      - 'ImplicitQualifiedImport'
+      - 'ImplicitQualifiedImportReExport'
     strict: true
-    pedantic_packages: true
+    pedanticPackages: true
+  test:
+    main: Test.Main
+    dependencies:
+      - spec
+      - spec-node
   dependencies:
+    - arrays
+    - elmish
+    - elmish-html
+    - integers
+    - numbers
     - prelude
-    - aff
-    - effect
-    - either
-    - maybe
-    - foldable-traversable
-    - console
-    - newtype
-    - strings
-    - stringutils
-    - transformers
     - tuples
     - typelevel-prelude
-  name: project
+    - unsafe-coerce
 workspace:
-  extra_packages: {}
-  package_set:
-    url: https://raw.githubusercontent.com/purescript/package-sets/psc-0.15.10-20230930/packages.json
-    hash: sha256-nTsd44o7/hrTdk0c6dh0wyBqhFFDJJIeKdQU6L1zv/A=
+  extraPackages: {}
+  packageSet:
+    registry: 73.2.0
