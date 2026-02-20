@@ -8,6 +8,8 @@ module Mujoco.XML.Node
   , fragment
   , empty
   , text
+  , Tag
+  , TagNoContent
   ) where
 
 import Prelude
