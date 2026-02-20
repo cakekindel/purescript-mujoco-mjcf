@@ -1,6 +1,32 @@
-module Mujoco.MJCF where
+module Mujoco.MJCF
+  ( Angle(..)
+  , Cone(..)
+  , Coordinate(..)
+  , Enable(..)
+  , InertiaFromGeom(..)
+  , Integrator(..)
+  , Jacobian(..)
+  , Props_compiler
+  , Props_flag
+  , Props_option
+  , Props_size
+  , Props_mujoco
+  , Props_statistic
+  , Solver(..)
+  , compiler
+  , flag
+  , mujoco
+  , option
+  , size
+  , statistic
+  , module X
+  )
+  where
 
 import Mujoco.Prelude
+import Mujoco.MJCF.Asset as X
+import Mujoco.MJCF.Body as X
+import Mujoco.XML.Node (empty, text, fragment) as X
 
 type Props_mujoco = (model :: String)
 mujoco = tag @Props_mujoco "mujoco" :: Tag Props_mujoco
@@ -147,3 +173,13 @@ type Props_size =
   , nuser_sensor :: Int
   )
 size = tagNoContent @Props_size "size" :: TagNoContent Props_size
+
+type Props_statistic =
+  ( meanmass :: Real
+  , meaninertia :: Real
+  , meansize :: Real
+  , extent :: Real
+  , center :: Vec Real
+  )
+statistic = tagNoContent @Props_statistic "statistic" :: TagNoContent Props_statistic
+

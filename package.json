@@ -9,11 +9,16 @@
   },
   "devDependencies": {
     "bun-types": "1.0.11",
+    "mujoco_wasm": "^3.2.2",
     "purs-tidy": "^0.10.0",
     "spago": "^1.0.0"
   },
   "peerDependencies": {
     "typescript": "^5.0.0"
   },
-  "dependencies": {}
+  "dependencies": {
+    "react": "17",
+    "react-dom": "17",
+    "server": "react-dom/server"
+  }
 }

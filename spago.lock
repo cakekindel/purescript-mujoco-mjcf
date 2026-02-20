@@ -9,6 +9,7 @@
             "elmish",
             "elmish-html",
             "integers",
+            "maybe",
             "numbers",
             "prelude",
             "tuples",
@@ -18,6 +19,8 @@
         },
         "test": {
           "dependencies": [
+            "aff-promise",
+            "assert",
             "spec",
             "spec-node"
           ]
@@ -640,6 +643,21 @@
         "unsafe-coerce"
       ]
     },
+    "aff-promise": {
+      "type": "registry",
+      "version": "4.0.0",
+      "integrity": "sha256-Jgp3y+NWuuAmwz2V3LlWoX+AvxqfVglY77N5zTw8xnI=",
+      "dependencies": [
+        "aff",
+        "control",
+        "effect",
+        "either",
+        "exceptions",
+        "foreign",
+        "prelude",
+        "transformers"
+      ]
+    },
     "ansi": {
       "type": "registry",
       "version": "7.0.0",
@@ -716,6 +734,16 @@
         "tuples",
         "unfoldable",
         "unsafe-coerce"
+      ]
+    },
+    "assert": {
+      "type": "registry",
+      "version": "6.0.0",
+      "integrity": "sha256-hCZ1J8/71nQiRwsSV2j7iicppScOegBFZrLI6sPf9F8=",
+      "dependencies": [
+        "console",
+        "effect",
+        "prelude"
       ]
     },
     "avar": {

@@ -23,6 +23,8 @@ import Prim.Row (class Union)
 import Prim.RowList (class RowToList)
 import Unsafe.Coerce (unsafeCoerce)
 
+foreign import renderToString :: ReactElement -> String
+
 type Tag props
    = forall r missing a propsrl
    . Children a
@@ -46,7 +48,7 @@ type TagNoContent props
 foreign import data Node :: Type
 
 render :: Node -> String
-render = React.renderToString <<< toReact
+render = renderToString <<< toReact
 
 fromReact :: ReactElement -> Node
 fromReact = unsafeCoerce
