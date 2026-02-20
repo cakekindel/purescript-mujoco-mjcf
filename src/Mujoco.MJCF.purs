@@ -102,7 +102,7 @@ type Props_option =
   , actuatorgroupdisable :: Array Int
   , solver :: Solver
   )
-option = tag @Props_option "option" :: Tag Props_option
+option = tag @Props_option "mjcf:option" :: Tag Props_option
 
 type Props_flag =
   ( constraint :: Enable

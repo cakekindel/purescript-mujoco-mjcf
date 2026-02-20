@@ -15,7 +15,11 @@ module Mujoco.XML.Node
 import Prelude
 
 import Data.FoldableWithIndex (foldlWithIndex)
+import Data.Map (Map)
+import Data.Map as Map
 import Data.String as String
+import Data.Tuple as Tuple
+import Data.Tuple.Nested ((/\))
 import Elmish.HTML (empty, fragment, text) as HTML
 import Elmish.HTML.Internal (tag, tagNoContent) as HTML
 import Elmish.React (ReactElement)
@@ -24,6 +28,14 @@ import Mujoco.XML.Node.Prop as Prop
 import Prim.Row (class Union)
 import Prim.RowList (class RowToList)
 import Unsafe.Coerce (unsafeCoerce)
+
+unrenames :: Map String String
+unrenames =
+  let
+    props = Map.fromFoldable $ map Tuple.swap $ (Map.toUnfoldable Prop.renames :: Array _)
+    tags = Map.fromFoldable ["mjcf:option" /\ "option"]
+  in
+    Map.union props tags
 
 foreign import renderToString :: ReactElement -> String
 
@@ -50,13 +62,13 @@ foreign import data Node :: Type
 render :: Node -> String
 render =
   let
-    unrenameProps str =
-      foldlWithIndex unrenameProp str Prop.unrenames
+    unrename str =
+      foldlWithIndex unrename' str unrenames
 
-    unrenameProp from str to =
+    unrename' from str to =
       String.replaceAll (String.Pattern from) (String.Replacement to) str
   in
-    unrenameProps <<< renderToString <<< toReact
+    unrename <<< renderToString <<< toReact
 
 fromReact :: ReactElement -> Node
 fromReact = unsafeCoerce

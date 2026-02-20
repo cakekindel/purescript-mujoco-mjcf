@@ -113,7 +113,7 @@ type Props_geom =
   , condim :: Int
   , group :: Int
   , priority :: Int
-  , size :: Vec Real
+  , size :: Array Real
   , material :: String
   , rgba :: Vec4 Real
   , friction :: Vec Real
