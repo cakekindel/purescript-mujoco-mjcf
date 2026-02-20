@@ -33,6 +33,7 @@ spec =
       it "serializes number array" $ serialize [1.0, 2.0] `shouldEqual` "1 2"
       it "serializes tuple" $ serialize (1 /\ 2) `shouldEqual` "1 2"
       it "serializes nested tuple" $ serialize (1 /\ 2 /\ 3) `shouldEqual` "1 2 3"
+      it "serializes real(4)" $ serialize (1.0 /\ 1.0 /\ 0.5 /\ 0.1) `shouldEqual` "1 1 0.5 0.1"
 
     describe "SerializeProps" do
       let

@@ -1,12 +1,16 @@
-module Mujoco.XML.Node.Prop (class Serialize, serialize, serializeProps, class SerializeProps', serializeProps') where
+module Mujoco.XML.Node.Prop (class Serialize, serialize, serializeProps, class SerializeProps', serializeProps', renames, unrenames) where
 
 import Prelude
 
 import Data.Array as Array
 import Data.Int as Int
+import Data.Map (Map)
+import Data.Map as Map
+import Data.Maybe (fromMaybe)
 import Data.Number.Format (toString) as Number
 import Data.Symbol (class IsSymbol, reflectSymbol)
 import Data.Tuple (Tuple)
+import Data.Tuple as Tuple
 import Data.Tuple.Nested ((/\))
 import Prim.Row (class Cons, class Union)
 import Prim.RowList (class RowToList, RowList)
@@ -14,6 +18,12 @@ import Prim.RowList as RL
 import Record.Unsafe (unsafeSet, unsafeHas, unsafeGet) as Record
 import Type.Prelude (Proxy(..))
 import Unsafe.Coerce (unsafeCoerce)
+
+renames :: Map String String
+renames = Map.fromFoldable ["size" /\ "mjcf:size"]
+
+unrenames :: Map String String
+unrenames = Map.fromFoldable $ map Tuple.swap $ (Map.toUnfoldable renames :: Array _)
 
 class Serialize a where
   serialize :: a -> String
@@ -60,11 +70,14 @@ instance SerializeProps' () RL.Nil where
 patchUnsafe :: forall (@k :: Symbol) a b @r @lacksK. IsSymbol k => Cons k a lacksK r => (a -> b) -> Record r -> Record r
 patchUnsafe f r =
   let
-    k = reflectSymbol $ Proxy @k
+    k' = reflectSymbol $ Proxy @k
+
+    k = fromMaybe k' $ Map.lookup k' renames
+
     btoa = unsafeCoerce :: b -> a
   in
-    if Record.unsafeHas k r then
-      Record.unsafeSet k (btoa $ f $ Record.unsafeGet k r) r
+    if Record.unsafeHas k' r then
+      Record.unsafeSet k (btoa $ f $ Record.unsafeGet k' r) r
     else
       r
 

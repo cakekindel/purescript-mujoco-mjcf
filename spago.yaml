@@ -23,10 +23,13 @@ package:
     - arrays
     - elmish
     - elmish-html
+    - foldable-traversable
     - integers
     - maybe
     - numbers
+    - ordered-collections
     - prelude
+    - strings
     - tuples
     - typelevel-prelude
     - unsafe-coerce

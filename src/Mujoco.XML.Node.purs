@@ -14,11 +14,13 @@ module Mujoco.XML.Node
 
 import Prelude
 
+import Data.FoldableWithIndex (foldlWithIndex)
+import Data.String as String
 import Elmish.HTML (empty, fragment, text) as HTML
 import Elmish.HTML.Internal (tag, tagNoContent) as HTML
 import Elmish.React (ReactElement)
-import Elmish.React as React
 import Mujoco.XML.Node.Prop (class SerializeProps', serializeProps)
+import Mujoco.XML.Node.Prop as Prop
 import Prim.Row (class Union)
 import Prim.RowList (class RowToList)
 import Unsafe.Coerce (unsafeCoerce)
@@ -29,7 +31,6 @@ type Tag props
    = forall r missing a propsrl
    . Children a
   => Union r missing props
-  => React.ValidReactProps (Record r)
   => RowToList props propsrl
   => SerializeProps' props propsrl
   => Record r
@@ -39,7 +40,6 @@ type Tag props
 type TagNoContent props
    = forall r missing propsrl
    . Union r missing props
-  => React.ValidReactProps (Record r)
   => RowToList props propsrl
   => SerializeProps' props propsrl
   => Record r
@@ -48,7 +48,15 @@ type TagNoContent props
 foreign import data Node :: Type
 
 render :: Node -> String
-render = renderToString <<< toReact
+render =
+  let
+    unrenameProps str =
+      foldlWithIndex unrenameProp str Prop.unrenames
+
+    unrenameProp from str to =
+      String.replaceAll (String.Pattern from) (String.Replacement to) str
+  in
+    unrenameProps <<< renderToString <<< toReact
 
 fromReact :: ReactElement -> Node
 fromReact = unsafeCoerce
@@ -64,7 +72,6 @@ tag
   -> ( forall r missing a.
         Union r missing props
      => Children a
-     => React.ValidReactProps (Record r)
      => Record r
      -> a
      -> Node
@@ -78,7 +85,6 @@ tagNoContent
   => String
   -> ( forall r missing.
         Union r missing props
-     => React.ValidReactProps (Record r)
      => Record r
      -> Node
      )

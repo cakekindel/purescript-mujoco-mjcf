@@ -56,8 +56,8 @@ instance Serialize Solver where
 
 data Enable = Disable | Enable
 instance Serialize Enable where
-  serialize Enable = "Enable"
-  serialize Disable = "Disable"
+  serialize Enable = "enable"
+  serialize Disable = "disable"
 
 data Coordinate = Local | Global
 instance Serialize Coordinate where
@@ -100,6 +100,7 @@ type Props_option =
   , sdf_iterations :: Int
   , sdf_initpoints :: Int
   , actuatorgroupdisable :: Array Int
+  , solver :: Solver
   )
 option = tag @Props_option "option" :: Tag Props_option
 
@@ -130,7 +131,7 @@ type Props_flag =
   , multiccd :: Enable
   , sleep :: Enable
   )
-flag = tag @Props_flag "flag" :: Tag Props_flag
+flag = tagNoContent @Props_flag "flag" :: TagNoContent Props_flag
 
 type Props_compiler =
   ( autolimits :: Boolean
