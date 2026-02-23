@@ -17,7 +17,7 @@ spec =
       it "basic" $ parseOk $ X.mujoco {}
         [ X.compiler { inertiafromgeom: X.true_ }
         , Deformable.deformable {}
-            [ Flex.flex { name: "f1", dim: 3, vertex: [0.0, 0.0, 0.0, 1.0, 0.0, 0.0, 0.0, 1.0, 0.0, 0.0, 0.0, 1.0], element: [0, 1, 2, 3] }
+            [ Flex.flex { name: "f1", dim: 3, body: ["world", "world", "world", "world"], vertex: [0.0, 0.0, 0.0, 1.0, 0.0, 0.0, 0.0, 1.0, 0.0, 0.0, 0.0, 1.0], element: [0, 1, 2, 3] }
                 unit
             ]
         , X.worldbody {}
@@ -29,7 +29,7 @@ spec =
       it "with edge" $ parseOk $ X.mujoco {}
         [ X.compiler { inertiafromgeom: X.true_ }
         , Deformable.deformable {}
-            [ Flex.flex { name: "f2", dim: 3, vertex: [0.0, 0.0, 0.0, 1.0, 0.0, 0.0, 0.0, 1.0, 0.0, 0.0, 0.0, 1.0], element: [0, 1, 2, 3] }
+            [ Flex.flex { name: "f2", dim: 3, body: ["world", "world", "world", "world"], vertex: [0.0, 0.0, 0.0, 1.0, 0.0, 0.0, 0.0, 1.0, 0.0, 0.0, 0.0, 1.0], element: [0, 1, 2, 3] }
                 [ Flex.edge { stiffness: 100.0, damping: 1.0 } ]
             ]
         , X.worldbody {}
@@ -41,7 +41,7 @@ spec =
       it "with elasticity" $ parseOk $ X.mujoco {}
         [ X.compiler { inertiafromgeom: X.true_ }
         , Deformable.deformable {}
-            [ Flex.flex { name: "f3", dim: 3, vertex: [0.0, 0.0, 0.0, 1.0, 0.0, 0.0, 0.0, 1.0, 0.0, 0.0, 0.0, 1.0], element: [0, 1, 2, 3] }
+            [ Flex.flex { name: "f3", dim: 3, body: ["world", "world", "world", "world"], vertex: [0.0, 0.0, 0.0, 1.0, 0.0, 0.0, 0.0, 1.0, 0.0, 0.0, 0.0, 1.0], element: [0, 1, 2, 3] }
                 [ Flex.elasticity { young: 1000.0, poisson: 0.3, damping: 0.01 } ]
             ]
         , X.worldbody {}
@@ -53,7 +53,7 @@ spec =
       it "with contact" $ parseOk $ X.mujoco {}
         [ X.compiler { inertiafromgeom: X.true_ }
         , Deformable.deformable {}
-            [ Flex.flex { name: "f4", dim: 3, vertex: [0.0, 0.0, 0.0, 1.0, 0.0, 0.0, 0.0, 1.0, 0.0, 0.0, 0.0, 1.0], element: [0, 1, 2, 3] }
+            [ Flex.flex { name: "f4", dim: 3, body: ["world", "world", "world", "world"], vertex: [0.0, 0.0, 0.0, 1.0, 0.0, 0.0, 0.0, 1.0, 0.0, 0.0, 0.0, 1.0], element: [0, 1, 2, 3] }
                 [ Flex.contact { internal: true } ]
             ]
         , X.worldbody {}
@@ -65,7 +65,7 @@ spec =
       it "rgba + group" $ parseOk $ X.mujoco {}
         [ X.compiler { inertiafromgeom: X.true_ }
         , Deformable.deformable {}
-            [ Flex.flex { name: "f5", dim: 3, vertex: [0.0, 0.0, 0.0, 1.0, 0.0, 0.0, 0.0, 1.0, 0.0, 0.0, 0.0, 1.0], element: [0, 1, 2, 3], rgba: 1.0 /\ 0.0 /\ 0.0 /\ 1.0, group: 0 }
+            [ Flex.flex { name: "f5", dim: 3, body: ["world", "world", "world", "world"], vertex: [0.0, 0.0, 0.0, 1.0, 0.0, 0.0, 0.0, 1.0, 0.0, 0.0, 0.0, 1.0], element: [0, 1, 2, 3], rgba: 1.0 /\ 0.0 /\ 0.0 /\ 1.0, group: 0 }
                 unit
             ]
         , X.worldbody {}

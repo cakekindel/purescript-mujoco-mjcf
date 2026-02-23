@@ -15,7 +15,7 @@ import Data.Tuple.Nested ((/\))
 import Prim.Row (class Cons, class Union)
 import Prim.RowList (class RowToList, RowList)
 import Prim.RowList as RL
-import Record.Unsafe (unsafeSet, unsafeHas, unsafeGet) as Record
+import Record.Unsafe (unsafeDelete, unsafeGet, unsafeHas, unsafeSet) as Record
 import Type.Prelude (Proxy(..))
 import Unsafe.Coerce (unsafeCoerce)
 
@@ -72,9 +72,15 @@ patchUnsafe f r =
     k' = reflectSymbol $ Proxy @k
     k = fromMaybe k' $ Map.lookup k' renames
     btoa = unsafeCoerce :: b -> a
+    newValue _ = btoa $ f $ Record.unsafeGet k' r
+    maybeWasRenamed
+      | k' /= k = Record.unsafeDelete k'
+      | otherwise = identity
   in
     if Record.unsafeHas k' r then
-      Record.unsafeSet k (btoa $ f $ Record.unsafeGet k' r) r
+      maybeWasRenamed
+      $ Record.unsafeSet k (newValue unit)
+      $ r
     else
       r
 

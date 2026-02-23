@@ -44,9 +44,9 @@ spec =
 
     it "nested defaults" $ parseOk $ X.mujoco {}
       [ X.compiler { inertiafromgeom: X.true_ }
-      , Def.default { class: "outer" }
+      , Def.default {}
           [ Def.geom { rgba: 1.0 /\ 1.0 /\ 1.0 /\ 1.0 }
-          , Def.default { class: "inner" }
+          , Def.default { class: "red" }
               [ Def.geom { rgba: 1.0 /\ 0.0 /\ 0.0 /\ 1.0 } ]
           ]
       , X.worldbody {}
