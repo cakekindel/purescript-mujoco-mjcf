@@ -4,12 +4,11 @@ import Prelude
 
 import Control.Monad.Error.Class (class MonadError, class MonadThrow, try)
 import Control.Monad.Reader (class MonadAsk, class MonadReader, ReaderT, ask, local, runReaderT)
-import Control.Promise as Promise
 import Data.Either (isLeft)
 import Data.Identity (Identity)
 import Data.Newtype (class Newtype, unwrap)
 import Effect.Aff (Aff)
-import Effect.Aff.Class (class MonadAff, liftAff)
+import Effect.Aff.Class (class MonadAff)
 import Effect.Class (class MonadEffect, liftEffect)
 import Effect.Console as Console
 import Effect.Exception (Error)

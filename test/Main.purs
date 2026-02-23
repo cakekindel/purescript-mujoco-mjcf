@@ -19,7 +19,6 @@ import Test.Mujoco.MJCF.Tendon as Test.Mujoco.MJCF.Tendon
 import Test.Mujoco.MJCF.Util (mjcf)
 import Test.Mujoco.MJCF.Visual as Test.Mujoco.MJCF.Visual
 import Test.Mujoco.MJCF.XML.Prop as Test.Mujoco.MJCF.XML.Prop
-import Test.Spec (mapSpecTree)
 import Test.Spec.Reporter.Console (consoleReporter)
 import Test.Spec.Runner.Node (runSpecAndExitProcess)
 
@@ -28,7 +27,7 @@ main =
   launchAff_ do
     mj <- Wasm.loadMujoco
     liftEffect
-      $ runSpecAndExitProcess [ consoleReporter ]
+      $ runSpecAndExitProcess [consoleReporter]
       $ mjcf mj do
           Test.Mujoco.MJCF.spec
           Test.Mujoco.MJCF.XML.Prop.spec

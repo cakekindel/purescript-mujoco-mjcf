@@ -26,11 +26,11 @@ module Mujoco.MJCF
 import Mujoco.MJCF.Prelude
 
 import Mujoco.MJCF.Keyword as Kw
-import Mujoco.MJCF.Keyframe as X
-import Mujoco.MJCF.Keyword as X
-import Mujoco.MJCF.Asset as X
-import Mujoco.MJCF.Body as X
-import Mujoco.MJCF.Contact as X
+import Mujoco.MJCF.Keyframe (Props_key, key, keyframe) as X
+import Mujoco.MJCF.Keyword (Acc(..), Affine(..), Allowed(..), Auto(..), Axis(..), Ball(..), Body(..), Box(..), CG(..), Camera(..), Capsule(..), Checker(..), Convex(..), Cross(..), Cube(..), Cubic(..), Cylinder(..), Degree(..), Dense(..), Depth(..), Dir(..), Directional(..), Disable(..), Dist(..), Distance(..), Edge(..), Ellipsoid(..), Elliptic(..), Emissive(..), Enable(..), Euler(..), Exact(..), Filter(..), FilterExact(..), Fixed(..), Flat(..), Force(..), Found(..), Free(..), Geom(..), Global(..), Gradient(..), Hfield(..), Hinge(..), Image(..), Implicit(..), ImplicitFast(..), Init(..), Integrator(..), Legacy(..), Linear(..), Local(..), MaxForce(..), Mesh(..), Metallic(..), MinDist(..), Muscle(..), NetForce(..), Never(..), Newton(..), None(..), Normal(..), Occlusion(..), Opacity(..), Origin(..), Orm(..), Orthographic(..), PGS(..), Perspective(..), Plane(..), Point(..), Pos(..), Positive(..), Pyramidal(..), Quaternion(..), RK4(..), Radian(..), Random(..), Real(..), Rgb(..), Rgba(..), Roughness(..), SRGB(..), Sdf(..), Segmentation(..), Shell(..), Site(..), Skybox(..), Slide(..), Sparse(..), Sphere(..), Spot(..), Tangent(..), Targetbody(..), Targetbodycom(..), Torque(..), Track(..), Trackcom(..), TwoD(..), User(..), Vel(..), Xbody(..), Zoh(..), false_, kw, true_) as X
+import Mujoco.MJCF.Asset (LayerRole, MeshInertia, Props_hfield, Props_layer, Props_material, Props_mesh, Props_model, Props_texture, TextureBuiltin, TextureColorspace, TextureMark, TextureType, asset, hfield, layer, material, mesh, model, texture) as X
+import Mujoco.MJCF.Body (CameraMode, CameraOutput, JointType, LightType, Projection, Props_attach, Props_body, Props_camera, Props_frame, Props_freejoint, Props_geom, Props_inertial, Props_joint, Props_light, Props_site, SiteType, SleepPolicy, attach, body, camera, frame, freejoint, geom, inertial, joint, light, site, worldbody) as X
+import Mujoco.MJCF.Contact (Props_exclude, Props_pair, contact, exclude, pair) as X
 import Mujoco.MJCF.Sensor (sensor) as X
 import Mujoco.MJCF.Actuator (actuator) as X
 import Mujoco.MJCF.Tendon (tendon) as X
