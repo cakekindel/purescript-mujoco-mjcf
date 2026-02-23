@@ -70,9 +70,7 @@ patchUnsafe :: forall (@k :: Symbol) a b @r @lacksK. IsSymbol k => Cons k a lack
 patchUnsafe f r =
   let
     k' = reflectSymbol $ Proxy @k
-
     k = fromMaybe k' $ Map.lookup k' renames
-
     btoa = unsafeCoerce :: b -> a
   in
     if Record.unsafeHas k' r then
