@@ -2,14 +2,11 @@ module Mujoco.MJCF.Asset where
 
 import Mujoco.Prelude
 
+import Mujoco.MJCF.Keyword as Kw
+
 asset = tag @() "asset" :: Tag ()
 
-data MeshInertia = Convex | Exact | Legacy | Shell
-instance Serialize MeshInertia where
-  serialize Convex = "convex"
-  serialize Exact = "exact"
-  serialize Legacy = "legacy"
-  serialize Shell = "shell"
+type MeshInertia = Kw.Convex \/ Kw.Exact \/ Kw.Legacy \/ Kw.Shell
 
 type Props_mesh =
   ( name :: String
@@ -43,31 +40,10 @@ type Props_hfield =
   )
 hfield = tagNoContent @Props_hfield "hfield" :: TagNoContent Props_hfield
 
-data TextureType = Texture2d | TextureCube | TextureSkybox
-instance Serialize TextureType where
-  serialize Texture2d = "2d"
-  serialize TextureCube = "cube"
-  serialize TextureSkybox = "skybox"
-
-data TextureColorspace = ColorspaceAuto | ColorspaceLinear | ColorspaceSRGB
-instance Serialize TextureColorspace where
-  serialize ColorspaceAuto = "auto"
-  serialize ColorspaceLinear = "linear"
-  serialize ColorspaceSRGB = "sRGB"
-
-data TextureBuiltin = BuiltinNone | BuiltinGradient | BuiltinChecker | BuiltinFlat
-instance Serialize TextureBuiltin where
-  serialize BuiltinNone = "none"
-  serialize BuiltinGradient = "gradient"
-  serialize BuiltinChecker = "checker"
-  serialize BuiltinFlat = "flat"
-
-data TextureMark = MarkNone | MarkEdge | MarkCross | MarkRandom
-instance Serialize TextureMark where
-  serialize MarkNone = "none"
-  serialize MarkEdge = "edge"
-  serialize MarkCross = "cross"
-  serialize MarkRandom = "random"
+type TextureType = Kw.TwoD \/ Kw.Cube \/ Kw.Skybox
+type TextureColorspace = Kw.Auto \/ Kw.Linear \/ Kw.SRGB
+type TextureBuiltin = Kw.None \/ Kw.Gradient \/ Kw.Checker \/ Kw.Flat
+type TextureMark = Kw.None \/ Kw.Edge \/ Kw.Cross \/ Kw.Random
 
 type Props_texture =
   ( name :: String
@@ -113,27 +89,7 @@ type Props_material =
   )
 material = tag @Props_material "material" :: Tag Props_material
 
-data LayerRole
-  = RoleRgb
-  | RoleNormal
-  | RoleOcclusion
-  | RoleRoughness
-  | RoleMetallic
-  | RoleOpacity
-  | RoleEmissive
-  | RoleOrm
-  | RoleRgba
-
-instance Serialize LayerRole where
-  serialize RoleRgb = "rgb"
-  serialize RoleNormal = "normal"
-  serialize RoleOcclusion = "occlusion"
-  serialize RoleRoughness = "roughness"
-  serialize RoleMetallic = "metallic"
-  serialize RoleOpacity = "opacity"
-  serialize RoleEmissive = "emissive"
-  serialize RoleOrm = "orm"
-  serialize RoleRgba = "rgba"
+type LayerRole = Kw.Rgb \/ Kw.Normal \/ Kw.Occlusion \/ Kw.Roughness \/ Kw.Metallic \/ Kw.Opacity \/ Kw.Emissive \/ Kw.Orm \/ Kw.Rgba
 
 type Props_layer =
   ( texture :: String
@@ -147,4 +103,3 @@ type Props_model =
   , content_type :: String
   )
 model = tagNoContent @Props_model "model" :: TagNoContent Props_model
-

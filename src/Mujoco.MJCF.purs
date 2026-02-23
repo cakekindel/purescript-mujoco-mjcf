@@ -1,11 +1,10 @@
 module Mujoco.MJCF
-  ( Angle(..)
-  , Cone(..)
-  , Coordinate(..)
-  , Enable(..)
-  , InertiaFromGeom(..)
-  , Integrator(..)
-  , Jacobian(..)
+  ( Angle
+  , Cone
+  , Coordinate
+  , EnableDisable
+  , InertiaFromGeom
+  , Jacobian
   , Props_compiler
   , Props_flag
   , Props_option
@@ -13,7 +12,7 @@ module Mujoco.MJCF
   , Props_mujoco
   , Props_statistic
   , Props_plugin
-  , Solver(..)
+  , Solver
   , plugin
   , compiler
   , flag
@@ -27,58 +26,24 @@ module Mujoco.MJCF
 
 import Mujoco.Prelude
 
+import Mujoco.MJCF.Keyword as Kw
+import Mujoco.MJCF.Keyword as X
 import Mujoco.MJCF.Asset as X
 import Mujoco.MJCF.Body as X
-import Mujoco.MJCF.Common (Auto(..)) as X
+import Mujoco.MJCF.Common as X
 import Mujoco.MJCF.Contact as X
 import Mujoco.XML.Node (empty, text, fragment) as X
 
 type Props_mujoco = (model :: String)
 mujoco = tag @Props_mujoco "mujoco" :: Tag Props_mujoco
 
-data Integrator = Euler | RK4 | Implicit | ImplicitFast
-instance Serialize Integrator where
-  serialize Euler = "Euler"
-  serialize RK4 = "RK4"
-  serialize Implicit = "implicit"
-  serialize ImplicitFast = "implicitfast"
-
-data Cone = Pyramidal | Elliptic
-instance Serialize Cone where
-  serialize Pyramidal = "pyramidal"
-  serialize Elliptic = "elliptic"
-
-data Jacobian = Dense | Sparse
-instance Serialize Jacobian where
-  serialize Dense = "dense"
-  serialize Sparse = "sparse"
-
-data Solver = PGS | CG | Newton
-instance Serialize Solver where
-  serialize PGS = "PGS"
-  serialize CG = "CG"
-  serialize Newton = "Newton"
-
-data Enable = Disable | Enable
-instance Serialize Enable where
-  serialize Enable = "enable"
-  serialize Disable = "disable"
-
-data Coordinate = Local | Global
-instance Serialize Coordinate where
-  serialize Local = "local"
-  serialize Global = "global"
-
-data Angle = Radian | Degree
-instance Serialize Angle where
-  serialize Radian = "radian"
-  serialize Degree = "degree"
-
-data InertiaFromGeom = InertiaFromGeomFalse | InertiaFromGeomTrue | InertiaFromGeomAuto
-instance Serialize InertiaFromGeom where
-  serialize InertiaFromGeomFalse = "false"
-  serialize InertiaFromGeomTrue = "true"
-  serialize InertiaFromGeomAuto = "auto"
+type Cone = Kw.Pyramidal \/ Kw.Elliptic
+type Jacobian = Kw.Dense \/ Kw.Sparse
+type Solver = Kw.PGS \/ Kw.CG \/ Kw.Newton
+type EnableDisable = Kw.Enable \/ Kw.Disable
+type Coordinate = Kw.Local \/ Kw.Global
+type Angle = Kw.Radian \/ Kw.Degree
+type InertiaFromGeom = Kw.Auto \/ Boolean
 
 type Props_option =
   ( timestep :: Real
@@ -91,7 +56,7 @@ type Props_option =
   , o_margin :: Real
   , o_solref :: Real /\ Real
   , o_solimp :: Vec5 Real
-  , integrator :: Integrator
+  , integrator :: Kw.Euler \/ Kw.RK4 \/ Kw.Implicit \/ Kw.ImplicitFast
   , cone :: Cone
   , jacobian :: Jacobian
   , iterations :: Int
@@ -110,31 +75,31 @@ type Props_option =
 option = tag @Props_option "mjcf:option" :: Tag Props_option
 
 type Props_flag =
-  ( constraint :: Enable
-  , equality :: Enable
-  , frictionloss :: Enable
-  , limit :: Enable
-  , contact :: Enable
-  , spring :: Enable
-  , damper :: Enable
-  , gravity :: Enable
-  , clampctrl :: Enable
-  , warmstart :: Enable
-  , filterparent :: Enable
-  , actuation :: Enable
-  , refsafe :: Enable
-  , sensor :: Enable
-  , midphase :: Enable
-  , nativeccd :: Enable
-  , island :: Enable
-  , eulerdamp :: Enable
-  , autoreset :: Enable
-  , override :: Enable
-  , energy :: Enable
-  , fwdinv :: Enable
-  , invdiscrete :: Enable
-  , multiccd :: Enable
-  , sleep :: Enable
+  ( constraint :: EnableDisable
+  , equality :: EnableDisable
+  , frictionloss :: EnableDisable
+  , limit :: EnableDisable
+  , contact :: EnableDisable
+  , spring :: EnableDisable
+  , damper :: EnableDisable
+  , gravity :: EnableDisable
+  , clampctrl :: EnableDisable
+  , warmstart :: EnableDisable
+  , filterparent :: EnableDisable
+  , actuation :: EnableDisable
+  , refsafe :: EnableDisable
+  , sensor :: EnableDisable
+  , midphase :: EnableDisable
+  , nativeccd :: EnableDisable
+  , island :: EnableDisable
+  , eulerdamp :: EnableDisable
+  , autoreset :: EnableDisable
+  , override :: EnableDisable
+  , energy :: EnableDisable
+  , fwdinv :: EnableDisable
+  , invdiscrete :: EnableDisable
+  , multiccd :: EnableDisable
+  , sleep :: EnableDisable
   )
 flag = tagNoContent @Props_flag "flag" :: TagNoContent Props_flag
 

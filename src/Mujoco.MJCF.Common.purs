@@ -1,7 +1,15 @@
-module Mujoco.MJCF.Common where
+module Mujoco.MJCF.Common
+  ( Named
+  , Oriented
+  , Pos
+  , Real
+  , Vec
+  , Vec4
+  , Vec5
+  )
+  where
 
 import Data.Tuple.Nested (type (/\))
-import Mujoco.XML.Node.Prop (class Serialize)
 
 type Named r = (name :: String | r)
 type Pos r = (pos :: Vec Real | r)
@@ -13,10 +21,6 @@ type Oriented r =
   , euler :: Vec Real
   | r
   )
-
-data Auto = Auto
-instance Serialize Auto where
-  serialize Auto = "auto"
 
 type Real = Number
 type Vec a = a /\ a /\ a

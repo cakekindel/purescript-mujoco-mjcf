@@ -1,9 +1,9 @@
 module Mujoco.MJCF.Body
-  ( CameraMode(..)
-  , CameraOutput(..)
-  , JointType(..)
-  , LightType(..)
-  , Projection(..)
+  ( CameraMode
+  , CameraOutput
+  , JointType
+  , LightType
+  , Projection
   , Props_attach
   , Props_body
   , Props_camera
@@ -13,8 +13,8 @@ module Mujoco.MJCF.Body
   , Props_joint
   , Props_light
   , Props_site
-  , SiteType(..)
-  , SleepPolicy(..)
+  , SiteType
+  , SleepPolicy
   , attach
   , body
   , camera
@@ -32,13 +32,9 @@ module Mujoco.MJCF.Body
 import Mujoco.Prelude
 
 import Mujoco.MJCF.Geom (Props_geom, geom) as X
+import Mujoco.MJCF.Keyword as Kw
 
-data SleepPolicy = SleepAuto | SleepNever | SleepAllowed | SleepInit
-instance Serialize SleepPolicy where
-  serialize SleepAuto = "auto"
-  serialize SleepNever = "never"
-  serialize SleepAllowed = "allowed"
-  serialize SleepInit = "init"
+type SleepPolicy = Kw.Auto \/ Kw.Never \/ Kw.Allowed \/ Kw.Init
 
 type Props_body =
   ( name :: String
@@ -70,12 +66,7 @@ type Props_inertial =
   )
 inertial = tagNoContent @Props_inertial "inertial" :: TagNoContent Props_inertial
 
-data JointType = Free | Ball | Slide | Hinge
-instance Serialize JointType where
-  serialize Free = "free"
-  serialize Ball = "ball"
-  serialize Slide = "slide"
-  serialize Hinge = "hinge"
+type JointType = Kw.Free \/ Kw.Ball \/ Kw.Slide \/ Kw.Hinge
 
 type Props_joint =
   ( name :: String
@@ -91,9 +82,9 @@ type Props_joint =
   , solimpfriction :: Vec5 Real
   , stiffness :: Real
   , range :: Real /\ Real
-  , limited :: Auto \/ Boolean
+  , limited :: Kw.Auto \/ Boolean
   , actuatorfrcrange :: Real /\ Real
-  , actuatorfrclimited :: Auto \/ Boolean
+  , actuatorfrclimited :: Kw.Auto \/ Boolean
   , actuatorgravcomp :: Boolean
   , margin :: Real
   , ref :: Real
@@ -108,17 +99,11 @@ joint = tagNoContent @Props_joint "joint" :: TagNoContent Props_joint
 type Props_freejoint =
   ( name :: String
   , group :: Int
-  , align :: Auto \/ Boolean
+  , align :: Kw.Auto \/ Boolean
   )
 freejoint = tagNoContent @Props_freejoint "freejoint" :: TagNoContent Props_freejoint
 
-data SiteType = SiteSphere | SiteCapsule | SiteEllipsoid | SiteCylinder | SiteBox
-instance Serialize SiteType where
-  serialize SiteSphere = "sphere"
-  serialize SiteCapsule = "capsule"
-  serialize SiteEllipsoid = "ellipsoid"
-  serialize SiteCylinder = "cylinder"
-  serialize SiteBox = "box"
+type SiteType = Kw.Sphere \/ Kw.Capsule \/ Kw.Ellipsoid \/ Kw.Cylinder \/ Kw.Box
 
 type Props_site =
   ( name :: String
@@ -139,26 +124,9 @@ type Props_site =
   )
 site = tagNoContent @Props_site "site" :: TagNoContent Props_site
 
-data CameraMode = CamFixed | CamTrack | CamTrackcom | CamTargetbody | CamTargetbodycom
-instance Serialize CameraMode where
-  serialize CamFixed = "fixed"
-  serialize CamTrack = "track"
-  serialize CamTrackcom = "trackcom"
-  serialize CamTargetbody = "targetbody"
-  serialize CamTargetbodycom = "targetbodycom"
-
-data Projection = Perspective | Orthographic
-instance Serialize Projection where
-  serialize Perspective = "perspective"
-  serialize Orthographic = "orthographic"
-
-data CameraOutput = OutputRgb | OutputDepth | OutputDistance | OutputNormal | OutputSegmentation
-instance Serialize CameraOutput where
-  serialize OutputRgb = "rgb"
-  serialize OutputDepth = "depth"
-  serialize OutputDistance = "distance"
-  serialize OutputNormal = "normal"
-  serialize OutputSegmentation = "segmentation"
+type CameraMode = Kw.Fixed \/ Kw.Track \/ Kw.Trackcom \/ Kw.Targetbody \/ Kw.Targetbodycom
+type Projection = Kw.Perspective \/ Kw.Orthographic
+type CameraOutput = Kw.Rgb \/ Kw.Depth \/ Kw.Distance \/ Kw.Normal \/ Kw.Segmentation
 
 type Props_camera =
   ( name :: String
@@ -185,12 +153,7 @@ type Props_camera =
   )
 camera = tagNoContent @Props_camera "camera" :: TagNoContent Props_camera
 
-data LightType = LightSpot | LightDirectional | LightPoint | LightImage
-instance Serialize LightType where
-  serialize LightSpot = "spot"
-  serialize LightDirectional = "directional"
-  serialize LightPoint = "point"
-  serialize LightImage = "image"
+type LightType = Kw.Spot \/ Kw.Directional \/ Kw.Point \/ Kw.Image
 
 type Props_light =
   ( name :: String

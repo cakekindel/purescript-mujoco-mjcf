@@ -21,6 +21,7 @@ package:
       - spec-node
   dependencies:
     - arrays
+    - either
     - elmish
     - elmish-html
     - foldable-traversable

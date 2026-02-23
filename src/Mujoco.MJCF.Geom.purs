@@ -1,24 +1,7 @@
 module Mujoco.MJCF.Geom where
 
 import Mujoco.Prelude
-import Prim hiding (Type)
-
-data FluidShape = FluidNone | FluidEllipsoid
-instance Serialize FluidShape where
-  serialize FluidNone = "none"
-  serialize FluidEllipsoid = "ellipsoid"
-
-data Type = Plane | Hfield | Sphere | Capsule | Ellipsoid | Cylinder | Box | Mesh | Sdf
-instance Serialize Type where
-  serialize Plane = "plane"
-  serialize Hfield = "hfield"
-  serialize Sphere = "sphere"
-  serialize Capsule = "capsule"
-  serialize Ellipsoid = "ellipsoid"
-  serialize Cylinder = "cylinder"
-  serialize Box = "box"
-  serialize Mesh = "mesh"
-  serialize Sdf = "sdf"
+import Mujoco.MJCF.Keyword as Kw
 
 type Contact r =
   ( contype :: Int
@@ -43,7 +26,7 @@ type Solver r =
 
 type Props_geom =
     ( class :: String
-    , type :: Type
+    , type :: Kw.Plane \/ Kw.Hfield \/ Kw.Sphere \/ Kw.Capsule \/ Kw.Ellipsoid \/ Kw.Cylinder \/ Kw.Box \/ Kw.Mesh \/ Kw.Sdf
     , group :: Int
     , size :: Array Real
     , material :: String
@@ -56,7 +39,7 @@ type Props_geom =
     , hfield :: String
     , mesh :: String
     , fitscale :: Real
-    , fluidshape :: FluidShape
+    , fluidshape :: Kw.None \/ Kw.Ellipsoid
     , fluidcoef :: Vec5 Real
     , user :: Array Real
     | Named

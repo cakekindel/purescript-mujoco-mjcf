@@ -2,10 +2,12 @@ module Mujoco.MJCF.Tendon where
 
 import Mujoco.Prelude
 
+import Mujoco.MJCF.Keyword as Kw
+
 type Common r =
   ( class :: String
   , group :: Int
-  , limited :: Auto \/ Boolean
+  , limited :: Kw.Auto \/ Boolean
   , range :: Real /\ Real
   , solimplimit :: Vec5 Real
   , solimpfriction :: Vec5 Real
@@ -22,7 +24,7 @@ type Common r =
 
 type Props_spatial =
   ( actuatorfrcrange :: Real /\ Real
-  , actuatorfrclimited :: Auto \/ Boolean
+  , actuatorfrclimited :: Kw.Auto \/ Boolean
   , width :: Real
   , material :: String
   , rgba :: Vec4 Real
