@@ -3,6 +3,7 @@ module Mujoco.XML.Node.Prop (class Serialize, serialize, serializeProps, class S
 import Prelude
 
 import Data.Array as Array
+import Data.Either (Either, either)
 import Data.Int as Int
 import Data.Map (Map)
 import Data.Map as Map
@@ -32,6 +33,8 @@ else instance Serialize Number where
   serialize = Number.toString
 else instance Serialize Boolean where
   serialize = show
+else instance (Serialize a, Serialize b) => Serialize (Either a b) where
+  serialize = either serialize serialize
 else instance Serialize a => Serialize (Array a) where
   serialize = Array.intercalate " " <<< map serialize
 else instance (Serialize a, Serialize b) => Serialize (Tuple a b) where

@@ -148,5 +148,3 @@ type Props_model =
   )
 model = tagNoContent @Props_model "model" :: TagNoContent Props_model
 
-type Props_plugin = (plugin :: String, instance :: String)
-plugin = tag @Props_plugin "plugin" :: Tag Props_plugin

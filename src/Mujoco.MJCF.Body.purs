@@ -1,6 +1,37 @@
-module Mujoco.MJCF.Body where
+module Mujoco.MJCF.Body
+  ( CameraMode(..)
+  , CameraOutput(..)
+  , JointType(..)
+  , LightType(..)
+  , Projection(..)
+  , Props_attach
+  , Props_body
+  , Props_camera
+  , Props_frame
+  , Props_freejoint
+  , Props_inertial
+  , Props_joint
+  , Props_light
+  , Props_site
+  , SiteType(..)
+  , SleepPolicy(..)
+  , attach
+  , body
+  , camera
+  , frame
+  , freejoint
+  , inertial
+  , joint
+  , light
+  , site
+  , worldbody
+  , module X
+  )
+  where
 
 import Mujoco.Prelude
+
+import Mujoco.MJCF.Geom (Props_geom, geom) as X
 
 data SleepPolicy = SleepAuto | SleepNever | SleepAllowed | SleepInit
 instance Serialize SleepPolicy where
@@ -46,12 +77,6 @@ instance Serialize JointType where
   serialize Slide = "slide"
   serialize Hinge = "hinge"
 
-data AutoBool = AutoBoolFalse | AutoBoolTrue | AutoBoolAuto
-instance Serialize AutoBool where
-  serialize AutoBoolFalse = "false"
-  serialize AutoBoolTrue = "true"
-  serialize AutoBoolAuto = "auto"
-
 type Props_joint =
   ( name :: String
   , class :: String
@@ -66,9 +91,9 @@ type Props_joint =
   , solimpfriction :: Vec5 Real
   , stiffness :: Real
   , range :: Real /\ Real
-  , limited :: AutoBool
+  , limited :: Auto \/ Boolean
   , actuatorfrcrange :: Real /\ Real
-  , actuatorfrclimited :: AutoBool
+  , actuatorfrclimited :: Auto \/ Boolean
   , actuatorgravcomp :: Boolean
   , margin :: Real
   , ref :: Real
@@ -83,63 +108,9 @@ joint = tagNoContent @Props_joint "joint" :: TagNoContent Props_joint
 type Props_freejoint =
   ( name :: String
   , group :: Int
-  , align :: AutoBool
+  , align :: Auto \/ Boolean
   )
 freejoint = tagNoContent @Props_freejoint "freejoint" :: TagNoContent Props_freejoint
-
-data GeomType = GPlane | GHfield | GSphere | GCapsule | GEllipsoid | GCylinder | GBox | GMesh | GSdf
-instance Serialize GeomType where
-  serialize GPlane = "plane"
-  serialize GHfield = "hfield"
-  serialize GSphere = "sphere"
-  serialize GCapsule = "capsule"
-  serialize GEllipsoid = "ellipsoid"
-  serialize GCylinder = "cylinder"
-  serialize GBox = "box"
-  serialize GMesh = "mesh"
-  serialize GSdf = "sdf"
-
-data FluidShape = FluidNone | FluidEllipsoid
-instance Serialize FluidShape where
-  serialize FluidNone = "none"
-  serialize FluidEllipsoid = "ellipsoid"
-
-type Props_geom =
-  ( name :: String
-  , class :: String
-  , type :: GeomType
-  , contype :: Int
-  , conaffinity :: Int
-  , condim :: Int
-  , group :: Int
-  , priority :: Int
-  , size :: Array Real
-  , material :: String
-  , rgba :: Vec4 Real
-  , friction :: Vec Real
-  , mass :: Real
-  , density :: Real
-  , shellinertia :: Boolean
-  , solmix :: Real
-  , solref :: Real /\ Real
-  , solimp :: Vec5 Real
-  , margin :: Real
-  , gap :: Real
-  , fromto :: Array Real
-  , pos :: Vec Real
-  , quat :: Vec4 Real
-  , axisangle :: Vec4 Real
-  , xyaxes :: Array Real
-  , zaxis :: Vec Real
-  , euler :: Vec Real
-  , hfield :: String
-  , mesh :: String
-  , fitscale :: Real
-  , fluidshape :: FluidShape
-  , fluidcoef :: Vec5 Real
-  , user :: Array Real
-  )
-geom = tag @Props_geom "geom" :: Tag Props_geom
 
 data SiteType = SiteSphere | SiteCapsule | SiteEllipsoid | SiteCylinder | SiteBox
 instance Serialize SiteType where
@@ -246,3 +217,22 @@ type Props_light =
 light = tagNoContent @Props_light "light" :: TagNoContent Props_light
 
 -- TODO: body/composite reuses row types of joint, geom, site, skin, plugin
+
+type Props_attach =
+  ( model :: String
+  , body :: String
+  , prefix :: String
+  )
+attach = tagNoContent @Props_attach "attach" :: TagNoContent Props_attach
+
+type Props_frame =
+  ( name :: String
+  , childclass :: String
+  , pos :: Vec Real
+  , quat :: Vec4 Real
+  , axisangle :: Vec4 Real
+  , xyaxes :: Array Real
+  , zaxis :: Vec Real
+  , euler :: Vec Real
+  )
+frame = tagNoContent @Props_frame "frame" :: TagNoContent Props_frame

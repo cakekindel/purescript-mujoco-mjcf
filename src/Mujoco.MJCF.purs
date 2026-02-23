@@ -12,7 +12,9 @@ module Mujoco.MJCF
   , Props_size
   , Props_mujoco
   , Props_statistic
+  , Props_plugin
   , Solver(..)
+  , plugin
   , compiler
   , flag
   , mujoco
@@ -24,8 +26,11 @@ module Mujoco.MJCF
   where
 
 import Mujoco.Prelude
+
 import Mujoco.MJCF.Asset as X
 import Mujoco.MJCF.Body as X
+import Mujoco.MJCF.Common (Auto(..)) as X
+import Mujoco.MJCF.Contact as X
 import Mujoco.XML.Node (empty, text, fragment) as X
 
 type Props_mujoco = (model :: String)
@@ -184,3 +189,7 @@ type Props_statistic =
   )
 statistic = tagNoContent @Props_statistic "statistic" :: TagNoContent Props_statistic
 
+type Props_plugin = (plugin :: String, instance :: String)
+
+-- | `body/plugin`, `asset/mesh/plugin`
+plugin = tag @Props_plugin "plugin" :: Tag Props_plugin
