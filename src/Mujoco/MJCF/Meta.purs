@@ -4,6 +4,7 @@ import Mujoco.MJCF.Prelude
 
 type Props_frame :: Row Type
 type Props_frame = ()
+
 frame = tag @Props_frame "frame" :: Tag Props_frame
 
 type Props_replicate = (count :: Int, sep :: String, offset :: Vec Number, euler :: Vec Number)

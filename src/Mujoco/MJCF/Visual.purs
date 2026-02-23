@@ -19,6 +19,7 @@ type Props_global =
   , ellipsoidinertia :: Boolean
   , bvactive :: Boolean
   )
+
 global = tagNoContent @Props_global "global" :: TagNoContent Props_global
 
 type Props_quality =
@@ -28,6 +29,7 @@ type Props_quality =
   , numstacks :: Int
   , numquads :: Int
   )
+
 quality = tagNoContent @Props_quality "quality" :: TagNoContent Props_quality
 
 type Props_headlight =
@@ -36,6 +38,7 @@ type Props_headlight =
   , specular :: Vec Real
   , active :: Int
   )
+
 headlight = tagNoContent @Props_headlight "headlight" :: TagNoContent Props_headlight
 
 type Props_map =
@@ -53,6 +56,7 @@ type Props_map =
   , shadowscale :: Real
   , actuatortendon :: Real
   )
+
 map = tagNoContent @Props_map "map" :: TagNoContent Props_map
 
 type Props_scale =
@@ -74,6 +78,7 @@ type Props_scale =
   , slidercrank :: Real
   , frustum :: Real
   )
+
 scale = tagNoContent @Props_scale "scale" :: TagNoContent Props_scale
 
 type Props_rgba =
@@ -103,4 +108,5 @@ type Props_rgba =
   , bv :: Vec4 Real
   , bvactive :: Vec4 Real
   )
+
 rgba = tagNoContent @Props_rgba "rgba" :: TagNoContent Props_rgba

@@ -50,6 +50,7 @@ type Props_rangefinder =
   , data :: Array (Kw.Dist \/ Kw.Dir \/ Kw.Origin \/ Kw.Point \/ Kw.Normal \/ Kw.Depth)
   | Common ()
   )
+
 rangefinder = tagNoContent @Props_rangefinder "rangefinder" :: TagNoContent Props_rangefinder
 
 type Props_camprojection = Common (site :: String, camera :: String)
@@ -140,6 +141,7 @@ type Props_framelinacc =
   , objname :: String
   | Common ()
   )
+
 framelinacc = tagNoContent @Props_framelinacc "framelinacc" :: TagNoContent Props_framelinacc
 
 type Props_frameangacc =
@@ -147,6 +149,7 @@ type Props_frameangacc =
   , objname :: String
   | Common ()
   )
+
 frameangacc = tagNoContent @Props_frameangacc "frameangacc" :: TagNoContent Props_frameangacc
 
 type Props_subtreecom = Common (body :: String)
@@ -164,6 +167,7 @@ type Props_insidesite =
   , site :: String
   | Common ()
   )
+
 insidesite = tagNoContent @Props_insidesite "insidesite" :: TagNoContent Props_insidesite
 
 type Collision r = (geom1 :: String, geom2 :: String, body1 :: String, body2 :: String | Common r)
@@ -186,6 +190,7 @@ type Props_contact =
   , reduce :: Kw.None \/ Kw.MinDist \/ Kw.MaxForce \/ Kw.NetForce
   | Collision ()
   )
+
 contact = tagNoContent @Props_contact "contact" :: TagNoContent Props_contact
 
 type Props_tactile =
@@ -198,6 +203,7 @@ type Props_tactile =
   , user :: Array Real
   | Named ()
   )
+
 tactile = tagNoContent @Props_tactile "tactile" :: TagNoContent Props_tactile
 
 type Props_e_potential = Common ()
@@ -217,6 +223,7 @@ type Props_user =
   , dim :: Int
   | Common' ()
   )
+
 user = tagNoContent @Props_user "user" :: TagNoContent Props_user
 
 type Props_plugin =
@@ -230,4 +237,5 @@ type Props_plugin =
   , user :: Array Real
   | Named ()
   )
+
 plugin = tag @Props_plugin "plugin" :: Tag Props_plugin

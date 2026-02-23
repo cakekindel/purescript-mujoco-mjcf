@@ -33,14 +33,14 @@ unrenames :: Map String String
 unrenames =
   let
     props = Map.fromFoldable $ map Tuple.swap $ (Map.toUnfoldable Prop.renames :: Array _)
-    tags = Map.fromFoldable ["mjcf:option" /\ "option"]
+    tags = Map.fromFoldable [ "mjcf:option" /\ "option" ]
   in
     Map.union props tags
 
 foreign import renderToString :: ReactElement -> String
 
-type Tag props
-   = forall r missing a propsrl
+type Tag props =
+  forall r missing a propsrl
    . Children a
   => Union r missing props
   => RowToList props propsrl
@@ -49,8 +49,8 @@ type Tag props
   -> a
   -> Node
 
-type TagNoContent props
-   = forall r missing propsrl
+type TagNoContent props =
+  forall r missing propsrl
    . Union r missing props
   => RowToList props propsrl
   => SerializeProps' props propsrl
@@ -81,12 +81,12 @@ tag
    . RowToList props propsrl
   => SerializeProps' props propsrl
   => String
-  -> ( forall r missing a.
-        Union r missing props
-     => Children a
-     => Record r
-     -> a
-     -> Node
+  -> ( forall r missing a
+        . Union r missing props
+       => Children a
+       => Record r
+       -> a
+       -> Node
      )
 tag el p a = fromReact $ HTML.tag el (serializeProps @props p) $ toReact <$> asChildren a
 
@@ -95,10 +95,10 @@ tagNoContent
    . RowToList props propsrl
   => SerializeProps' props propsrl
   => String
-  -> ( forall r missing.
-        Union r missing props
-     => Record r
-     -> Node
+  -> ( forall r missing
+        . Union r missing props
+       => Record r
+       -> Node
      )
 tagNoContent el p = fromReact $ HTML.tagNoContent el (serializeProps @props p)
 
@@ -114,7 +114,14 @@ text = fromReact <<< HTML.text
 class Children a where
   asChildren :: a -> Array Node
 
-instance Children (Array Node) where asChildren = identity
-instance Children String where asChildren s = [ unsafeCoerce s ]
-instance Children Node where asChildren e = [ e ]
-instance Children Unit where asChildren _ = []
+instance Children (Array Node) where
+  asChildren = identity
+
+instance Children String where
+  asChildren s = [ unsafeCoerce s ]
+
+instance Children Node where
+  asChildren e = [ e ]
+
+instance Children Unit where
+  asChildren _ = []

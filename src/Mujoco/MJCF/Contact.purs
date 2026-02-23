@@ -17,6 +17,7 @@ type Props_pair =
   , margin :: Real
   , gap :: Real
   )
+
 pair = tagNoContent @Props_pair "pair" :: TagNoContent Props_pair
 
 type Props_exclude =
@@ -24,4 +25,5 @@ type Props_exclude =
   , body1 :: String
   , body2 :: String
   )
+
 exclude = tagNoContent @Props_exclude "exclude" :: TagNoContent Props_exclude

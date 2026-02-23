@@ -26,8 +26,7 @@ module Mujoco.MJCF.Body
   , site
   , worldbody
   , module X
-  )
-  where
+  ) where
 
 import Mujoco.MJCF.Prelude
 
@@ -50,6 +49,7 @@ type Props_body =
   , sleep :: SleepPolicy
   , user :: Array Real
   )
+
 body = tag @Props_body "body" :: Tag Props_body
 worldbody = tag @Props_body "worldbody" :: Tag Props_body
 
@@ -64,6 +64,7 @@ type Props_inertial =
   , diaginertia :: Vec Real
   , fullinertia :: Array Real
   )
+
 inertial = tagNoContent @Props_inertial "inertial" :: TagNoContent Props_inertial
 
 type JointType = Kw.Free \/ Kw.Ball \/ Kw.Slide \/ Kw.Hinge
@@ -94,6 +95,7 @@ type Props_joint =
   , frictionloss :: Real
   , user :: Array Real
   )
+
 joint = tagNoContent @Props_joint "joint" :: TagNoContent Props_joint
 
 type Props_freejoint =
@@ -101,6 +103,7 @@ type Props_freejoint =
   , group :: Int
   , align :: Kw.Auto \/ Boolean
   )
+
 freejoint = tagNoContent @Props_freejoint "freejoint" :: TagNoContent Props_freejoint
 
 type SiteType = Kw.Sphere \/ Kw.Capsule \/ Kw.Ellipsoid \/ Kw.Cylinder \/ Kw.Box
@@ -122,6 +125,7 @@ type Props_site =
   , euler :: Vec Real
   , user :: Array Real
   )
+
 site = tagNoContent @Props_site "site" :: TagNoContent Props_site
 
 type CameraMode = Kw.Fixed \/ Kw.Track \/ Kw.Trackcom \/ Kw.Targetbody \/ Kw.Targetbodycom
@@ -151,6 +155,7 @@ type Props_camera =
   , euler :: Vec Real
   , user :: Array Real
   )
+
 camera = tagNoContent @Props_camera "camera" :: TagNoContent Props_camera
 
 type LightType = Kw.Spot \/ Kw.Directional \/ Kw.Point \/ Kw.Image
@@ -177,6 +182,7 @@ type Props_light =
   , cutoff :: Real
   , exponent :: Real
   )
+
 light = tagNoContent @Props_light "light" :: TagNoContent Props_light
 
 -- TODO: body/composite reuses row types of joint, geom, site, skin, plugin
@@ -186,6 +192,7 @@ type Props_attach =
   , body :: String
   , prefix :: String
   )
+
 attach = tagNoContent @Props_attach "attach" :: TagNoContent Props_attach
 
 type Props_frame =
@@ -198,4 +205,5 @@ type Props_frame =
   , zaxis :: Vec Real
   , euler :: Vec Real
   )
+
 frame = tagNoContent @Props_frame "frame" :: TagNoContent Props_frame

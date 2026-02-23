@@ -20,7 +20,7 @@ import Type.Prelude (Proxy(..))
 import Unsafe.Coerce (unsafeCoerce)
 
 renames :: Map String String
-renames = Map.fromFoldable ["size" /\ "mjcf:size", "class" /\ "mjcf:class"]
+renames = Map.fromFoldable [ "size" /\ "mjcf:size", "class" /\ "mjcf:class" ]
 
 class Serialize a where
   serialize :: a -> String
@@ -38,13 +38,13 @@ else instance (Serialize a, Serialize b) => Serialize (Either a b) where
 else instance Serialize a => Serialize (Array a) where
   serialize = Array.intercalate " " <<< map serialize
 else instance (Serialize a, Serialize b) => Serialize (Tuple a b) where
-  serialize (a /\ b) = serialize [serialize a, serialize b]
+  serialize (a /\ b) = serialize [ serialize a, serialize b ]
 
 serializeProps :: forall @props part missing propsrl. RowToList props propsrl => SerializeProps' props propsrl => Union part missing props => Record part -> {}
 serializeProps =
   (unsafeCoerce :: Record props -> {})
-  <<< serializeProps' @props @propsrl
-  <<< (unsafeCoerce :: Record part -> Record props)
+    <<< serializeProps' @props @propsrl
+    <<< (unsafeCoerce :: Record part -> Record props)
 
 class SerializeProps' :: Row Type -> RowList Type -> Constraint
 class SerializeProps' p prl | prl -> p where
@@ -57,12 +57,14 @@ instance
   , Cons k v p' p
   , SerializeProps' p' prl'
   , Serialize v
-  ) => SerializeProps' p (RL.Cons k v prl') where
+  ) =>
+  SerializeProps' p (RL.Cons k v prl') where
   serializeProps' =
     patchUnsafe @k serialize
-    <<< remember @k
-    <<< serializeProps' @p' @prl'
-    <<< forget @k
+      <<< remember @k
+      <<< serializeProps' @p' @prl'
+      <<< forget @k
+
 instance SerializeProps' () RL.Nil where
   serializeProps' = identity
 
@@ -79,8 +81,8 @@ patchUnsafe f r =
   in
     if Record.unsafeHas k' r then
       maybeWasRenamed
-      $ Record.unsafeSet k (newValue unit)
-      $ r
+        $ Record.unsafeSet k (newValue unit)
+        $ r
     else
       r
 

@@ -13,7 +13,7 @@ spec =
     describe "numeric" do
       it "name + data" $ parseOk $ X.mujoco {}
         [ Custom.custom {}
-            [ Custom.numeric { name: "params", data: [1.0, 2.0, 3.0] } ]
+            [ Custom.numeric { name: "params", data: [ 1.0, 2.0, 3.0 ] } ]
         , X.worldbody {} unit
         ]
 
@@ -42,7 +42,7 @@ spec =
     describe "mixed" do
       it "numeric + text + tuple" $ parseOk $ X.mujoco {}
         [ Custom.custom {}
-            [ Custom.numeric { name: "n1", data: [0.0] }
+            [ Custom.numeric { name: "n1", data: [ 0.0 ] }
             , Custom.text { name: "t1", data: "value" }
             , Custom.tuple { name: "tup1" } unit
             ]

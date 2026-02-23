@@ -33,6 +33,7 @@ type Props_spatial =
   , armature :: Real
   | Common ()
   )
+
 spatial = tag @Props_spatial "spatial" :: Tag Props_spatial
 
 type Props_site = (site :: String)

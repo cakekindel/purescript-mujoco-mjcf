@@ -16,11 +16,11 @@ m t = X.mujoco {}
   , X.worldbody {}
       [ X.body { name: "b1", pos: 0.0 /\ 0.0 /\ 0.5 }
           [ X.joint { name: "j1", type: X.kw X.Hinge, axis: 1.0 /\ 0.0 /\ 0.0 }
-          , X.geom { type: X.kw X.Capsule, size: [0.05, 0.2] } unit
+          , X.geom { type: X.kw X.Capsule, size: [ 0.05, 0.2 ] } unit
           , X.site { name: "s1", pos: 0.0 /\ 0.0 /\ 0.2, size: 0.01 /\ 0.01 /\ 0.01 }
           , X.body { name: "b2", pos: 0.0 /\ 0.0 /\ 0.5 }
               [ X.joint { name: "j2", type: X.kw X.Hinge, axis: 1.0 /\ 0.0 /\ 0.0 }
-              , X.geom { type: X.kw X.Capsule, size: [0.05, 0.2] } unit
+              , X.geom { type: X.kw X.Capsule, size: [ 0.05, 0.2 ] } unit
               , X.site { name: "s2", pos: 0.0 /\ 0.0 /\ 0.2, size: 0.01 /\ 0.01 /\ 0.01 }
               ]
           ]

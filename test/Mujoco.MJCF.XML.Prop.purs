@@ -27,11 +27,11 @@ spec =
     describe "Serialize" do
       it "serializes boolean" $ serialize true `shouldEqual` "true"
       it "serializes string" $ serialize "a" `shouldEqual` "a"
-      it "serializes array" $ serialize ["a", "b"] `shouldEqual` "a b"
-      it "serializes nested array" $ serialize [["a", "b"], ["c"]] `shouldEqual` "a b c"
+      it "serializes array" $ serialize [ "a", "b" ] `shouldEqual` "a b"
+      it "serializes nested array" $ serialize [ [ "a", "b" ], [ "c" ] ] `shouldEqual` "a b c"
       it "serializes int" $ serialize 1 `shouldEqual` "1"
-      it "serializes int array" $ serialize [1, 2] `shouldEqual` "1 2"
-      it "serializes number array" $ serialize [1.0, 2.0] `shouldEqual` "1 2"
+      it "serializes int array" $ serialize [ 1, 2 ] `shouldEqual` "1 2"
+      it "serializes number array" $ serialize [ 1.0, 2.0 ] `shouldEqual` "1 2"
       it "serializes tuple" $ serialize (1 /\ 2) `shouldEqual` "1 2"
       it "serializes nested tuple" $ serialize (1 /\ 2 /\ 3) `shouldEqual` "1 2 3"
       it "serializes real(4)" $ serialize (1.0 /\ 1.0 /\ 0.5 /\ 0.1) `shouldEqual` "1 1 0.5 0.1"
@@ -50,4 +50,4 @@ spec =
       it "handles empty" $ serializeProps' {} `shouldEqual` {}
       it "handles int" $ serializeProps' { int: 1 } `shouldEqual` { int: "1" }
       it "handles string" $ serializeProps' { string: "a" } `shouldEqual` { string: "a" }
-      it "handles array2" $ serializeProps' { array2: [[1, 2, 3], [4, 5]] } `shouldEqual` { array2: "1 2 3 4 5" }
+      it "handles array2" $ serializeProps' { array2: [ [ 1, 2, 3 ], [ 4, 5 ] ] } `shouldEqual` { array2: "1 2 3 4 5" }

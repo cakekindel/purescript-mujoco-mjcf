@@ -6,8 +6,7 @@ module Mujoco.MJCF.Common
   , Vec
   , Vec4
   , Vec5
-  )
-  where
+  ) where
 
 import Data.Tuple.Nested (type (/\))
 

@@ -26,11 +26,11 @@ spec =
       , X.worldbody {}
           [ X.body { pos: 0.0 /\ 0.0 /\ 0.5 }
               [ X.joint { name: "j1", type: X.kw X.Hinge, axis: 1.0 /\ 0.0 /\ 0.0 }
-              , X.geom { type: X.kw X.Sphere, size: [0.1, 0.0, 0.0] } unit
+              , X.geom { type: X.kw X.Sphere, size: [ 0.1, 0.0, 0.0 ] } unit
               ]
           ]
       , X.keyframe {}
-          [ X.key { name: "init", time: 0.0, qpos: [0.5], qvel: [0.0] } ]
+          [ X.key { name: "init", time: 0.0, qpos: [ 0.5 ], qvel: [ 0.0 ] } ]
       ]
 
     it "key with ctrl" $ parseOk $ X.mujoco {}
@@ -38,11 +38,11 @@ spec =
       , X.worldbody {}
           [ X.body { pos: 0.0 /\ 0.0 /\ 0.5 }
               [ X.joint { name: "j1", type: X.kw X.Hinge, axis: 1.0 /\ 0.0 /\ 0.0 }
-              , X.geom { type: X.kw X.Sphere, size: [0.1, 0.0, 0.0] } unit
+              , X.geom { type: X.kw X.Sphere, size: [ 0.1, 0.0, 0.0 ] } unit
               ]
           ]
       , X.keyframe {}
-          [ X.key { name: "start", ctrl: [0.0] } ]
+          [ X.key { name: "start", ctrl: [ 0.0 ] } ]
       ]
 
     it "multiple keys" $ parseOk $ X.mujoco {}

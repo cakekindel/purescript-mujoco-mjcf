@@ -13,6 +13,7 @@ type Props_skin =
   , rgba :: Vec4 Real
   , group :: Int
   )
+
 skin = tag @Props_skin "skin" :: Tag Props_skin
 
 type Props_bone =
@@ -22,4 +23,5 @@ type Props_bone =
   , vertid :: Array Int
   , vertweight :: Array Real
   )
+
 bone = tagNoContent @Props_bone "bone" :: TagNoContent Props_bone

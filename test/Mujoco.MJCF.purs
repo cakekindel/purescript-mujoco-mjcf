@@ -77,7 +77,7 @@ spec =
       describe "mesh" do
         it "inline vertex" $ parseOk $ X.mujoco {}
           [ X.asset {}
-              [ X.mesh { name: "tetra", vertex: [0.0, 0.0, 0.0, 1.0, 0.0, 0.0, 0.0, 1.0, 0.0, 0.0, 0.0, 1.0] } unit ]
+              [ X.mesh { name: "tetra", vertex: [ 0.0, 0.0, 0.0, 1.0, 0.0, 0.0, 0.0, 1.0, 0.0, 0.0, 0.0, 1.0 ] } unit ]
           , X.worldbody {} unit
           ]
 
@@ -116,52 +116,52 @@ spec =
         it "hinge" $ parseOk $ w $
           X.body { name: "b1", pos: 0.0 /\ 0.0 /\ 0.5 }
             [ X.joint { type: X.kw X.Hinge, axis: 1.0 /\ 0.0 /\ 0.0 }
-            , X.geom { type: X.kw X.Sphere, size: [0.1, 0.0, 0.0] } unit
+            , X.geom { type: X.kw X.Sphere, size: [ 0.1, 0.0, 0.0 ] } unit
             ]
 
         it "slide with range" $ parseOk $ w $
           X.body { name: "slider", pos: 0.0 /\ 0.0 /\ 1.0 }
             [ X.joint { type: X.kw X.Slide, axis: 0.0 /\ 0.0 /\ 1.0, range: (-1.0) /\ 1.0, limited: X.true_ }
-            , X.geom { type: X.kw X.Box, size: [0.1, 0.1, 0.1] } unit
+            , X.geom { type: X.kw X.Box, size: [ 0.1, 0.1, 0.1 ] } unit
             ]
 
         it "stiffness + damping" $ parseOk $ w $
           X.body { pos: 0.0 /\ 0.0 /\ 0.0 }
             [ X.joint { type: X.kw X.Hinge, stiffness: 100.0, damping: 10.0, armature: 0.1 }
-            , X.geom { type: X.kw X.Sphere, size: [0.05, 0.0, 0.0] } unit
+            , X.geom { type: X.kw X.Sphere, size: [ 0.05, 0.0, 0.0 ] } unit
             ]
 
       describe "freejoint" do
         it "basic" $ parseOk $ w $
           X.body { name: "free_body", pos: 0.0 /\ 0.0 /\ 1.0 }
             [ X.freejoint { name: "fj" }
-            , X.geom { type: X.kw X.Sphere, size: [0.1, 0.0, 0.0] } unit
+            , X.geom { type: X.kw X.Sphere, size: [ 0.1, 0.0, 0.0 ] } unit
             ]
 
       describe "geom" do
         it "sphere" $ parseOk $ w $
-          X.geom { type: X.kw X.Sphere, size: [1.0, 0.0, 0.0] } unit
+          X.geom { type: X.kw X.Sphere, size: [ 1.0, 0.0, 0.0 ] } unit
 
         it "capsule fromto" $ parseOk $ w $
-          X.geom { type: X.kw X.Capsule, fromto: [0.0, 0.0, 0.0, 0.0, 0.0, 1.0], size: [0.05, 0.0, 0.0] } unit
+          X.geom { type: X.kw X.Capsule, fromto: [ 0.0, 0.0, 0.0, 0.0, 0.0, 1.0 ], size: [ 0.05, 0.0, 0.0 ] } unit
 
         it "box with material" $ parseOk $ X.mujoco {}
           [ X.asset {}
               [ X.material { name: "red", rgba: 1.0 /\ 0.0 /\ 0.0 /\ 1.0 } unit ]
           , X.worldbody {} $
-              X.geom { type: X.kw X.Box, size: [0.5, 0.5, 0.5], material: "red" } unit
+              X.geom { type: X.kw X.Box, size: [ 0.5, 0.5, 0.5 ], material: "red" } unit
           ]
 
         it "plane" $ parseOk $ w $
-          X.geom { type: X.kw X.Plane, size: [5.0, 5.0, 0.1] } unit
+          X.geom { type: X.kw X.Plane, size: [ 5.0, 5.0, 0.1 ] } unit
 
         it "friction + density" $ parseOk $ w $
-          X.geom { type: X.kw X.Sphere, size: [0.1, 0.0, 0.0], friction: 0.5 /\ 0.005 /\ 0.0001, density: 500.0 } unit
+          X.geom { type: X.kw X.Sphere, size: [ 0.1, 0.0, 0.0 ], friction: 0.5 /\ 0.005 /\ 0.0001, density: 500.0 } unit
 
       describe "site" do
         it "basic" $ parseOk $ w $
           X.body { pos: 0.0 /\ 0.0 /\ 0.0 }
-            [ X.geom { type: X.kw X.Sphere, size: [0.1, 0.0, 0.0] } unit
+            [ X.geom { type: X.kw X.Sphere, size: [ 0.1, 0.0, 0.0 ] } unit
             , X.site { name: "s1", pos: 0.0 /\ 0.0 /\ 0.1, size: 0.01 /\ 0.01 /\ 0.01 }
             ]
 
@@ -171,7 +171,7 @@ spec =
 
         it "tracking" $ parseOk $ w $
           X.body { name: "target_body", pos: 0.0 /\ 0.0 /\ 0.5 }
-            [ X.geom { type: X.kw X.Sphere, size: [0.1, 0.0, 0.0] } unit
+            [ X.geom { type: X.kw X.Sphere, size: [ 0.1, 0.0, 0.0 ] } unit
             , X.camera { name: "tracker", mode: X.kw X.Targetbody, target: "target_body", pos: 1.0 /\ 0.0 /\ 0.5 }
             ]
 
@@ -186,7 +186,7 @@ spec =
         it "explicit mass + diaginertia" $ parseOk $ w $
           X.body { pos: 0.0 /\ 0.0 /\ 0.0 }
             [ X.inertial { pos: 0.0 /\ 0.0 /\ 0.0, mass: 1.0, diaginertia: 0.01 /\ 0.01 /\ 0.01 }
-            , X.geom { type: X.kw X.Sphere, size: [0.1, 0.0, 0.0] } unit
+            , X.geom { type: X.kw X.Sphere, size: [ 0.1, 0.0, 0.0 ] } unit
             ]
 
     describe "composite" do
@@ -201,11 +201,11 @@ spec =
                 , X.material { name: "floor_mat", texture: "grid", texrepeat: 5.0 /\ 5.0 } unit
                 ]
             , X.worldbody {}
-                [ X.geom { type: X.kw X.Plane, size: [5.0, 5.0, 0.1], material: "floor_mat" } unit
+                [ X.geom { type: X.kw X.Plane, size: [ 5.0, 5.0, 0.1 ], material: "floor_mat" } unit
                 , X.light { name: "top", pos: 0.0 /\ 0.0 /\ 3.0, dir: 0.0 /\ 0.0 /\ (-1.0) }
                 , X.body { name: "ball", pos: 0.0 /\ 0.0 /\ 1.0 }
                     [ X.freejoint {}
-                    , X.geom { type: X.kw X.Sphere, size: [0.1, 0.0, 0.0], rgba: 1.0 /\ 0.0 /\ 0.0 /\ 1.0 } unit
+                    , X.geom { type: X.kw X.Sphere, size: [ 0.1, 0.0, 0.0 ], rgba: 1.0 /\ 0.0 /\ 0.0 /\ 1.0 } unit
                     ]
                 ]
             ]
@@ -213,23 +213,23 @@ spec =
       it "bodies with joints" $ parseOk $ w
         [ X.light { name: "top", pos: 0.0 /\ 0.0 /\ 1.0 }
         , X.body {}
-          [ X.joint { name: "v0_rx", damping: 1.0, stiffness: 10.0, axis: 1.0 /\ 0.0 /\ 0.0, pos: 0.0 /\ 0.0 /\ (-0.5) }
-          , X.joint { name: "v0_ry", damping: 1.0, stiffness: 10.0, axis: 0.0 /\ 1.0 /\ 0.0, pos: 0.0 /\ 0.0 /\ (-0.5) }
-          , X.geom { type: X.kw X.Cylinder, size: [1.0, 0.05] } unit
-          , X.body { pos: zero /\ zero /\ 0.51 }
-            [ X.joint { name: "b0a_rx", damping: 1.0, stiffness: 10.0, axis: 1.0 /\ 0.0 /\ 0.0, pos: 0.0 /\ 0.0 /\ (-0.5) }
-            , X.joint { name: "b0a_ry", damping: 1.0, stiffness: 10.0, axis: 0.0 /\ 1.0 /\ 0.0, pos: 0.0 /\ 0.0 /\ (-0.5) }
-            , X.geom { type: X.kw X.Cylinder, size: [0.05, 0.5] } unit
-            , X.body { pos: zero /\ zero /\ one }
-              [ X.joint { name: "b0b_rx", damping: 1.0, stiffness: 10.0, axis: 1.0 /\ 0.0 /\ 0.0, pos: 0.0 /\ 0.0 /\ (-0.5) }
-              , X.joint { name: "b0b_ry", damping: 1.0, stiffness: 10.0, axis: 0.0 /\ 1.0 /\ 0.0, pos: 0.0 /\ 0.0 /\ (-0.5) }
-              , X.geom { type: X.kw X.Cylinder, size: [0.05, 0.5] } unit
-              , X.body { pos: zero /\ zero /\ 0.5 }
-                [ X.joint { name: "v1_rx", damping: 1.0, stiffness: 10.0, axis: 1.0 /\ 0.0 /\ 0.0, pos: 0.0 /\ 0.0 /\ (-0.5) }
-                , X.joint { name: "v1_ry", damping: 1.0, stiffness: 10.0, axis: 0.0 /\ 1.0 /\ 0.0, pos: 0.0 /\ 0.0 /\ (-0.5) }
-                , X.geom { type: X.kw X.Cylinder, size: [1.0, 0.05] } unit
+            [ X.joint { name: "v0_rx", damping: 1.0, stiffness: 10.0, axis: 1.0 /\ 0.0 /\ 0.0, pos: 0.0 /\ 0.0 /\ (-0.5) }
+            , X.joint { name: "v0_ry", damping: 1.0, stiffness: 10.0, axis: 0.0 /\ 1.0 /\ 0.0, pos: 0.0 /\ 0.0 /\ (-0.5) }
+            , X.geom { type: X.kw X.Cylinder, size: [ 1.0, 0.05 ] } unit
+            , X.body { pos: zero /\ zero /\ 0.51 }
+                [ X.joint { name: "b0a_rx", damping: 1.0, stiffness: 10.0, axis: 1.0 /\ 0.0 /\ 0.0, pos: 0.0 /\ 0.0 /\ (-0.5) }
+                , X.joint { name: "b0a_ry", damping: 1.0, stiffness: 10.0, axis: 0.0 /\ 1.0 /\ 0.0, pos: 0.0 /\ 0.0 /\ (-0.5) }
+                , X.geom { type: X.kw X.Cylinder, size: [ 0.05, 0.5 ] } unit
+                , X.body { pos: zero /\ zero /\ one }
+                    [ X.joint { name: "b0b_rx", damping: 1.0, stiffness: 10.0, axis: 1.0 /\ 0.0 /\ 0.0, pos: 0.0 /\ 0.0 /\ (-0.5) }
+                    , X.joint { name: "b0b_ry", damping: 1.0, stiffness: 10.0, axis: 0.0 /\ 1.0 /\ 0.0, pos: 0.0 /\ 0.0 /\ (-0.5) }
+                    , X.geom { type: X.kw X.Cylinder, size: [ 0.05, 0.5 ] } unit
+                    , X.body { pos: zero /\ zero /\ 0.5 }
+                        [ X.joint { name: "v1_rx", damping: 1.0, stiffness: 10.0, axis: 1.0 /\ 0.0 /\ 0.0, pos: 0.0 /\ 0.0 /\ (-0.5) }
+                        , X.joint { name: "v1_ry", damping: 1.0, stiffness: 10.0, axis: 0.0 /\ 1.0 /\ 0.0, pos: 0.0 /\ 0.0 /\ (-0.5) }
+                        , X.geom { type: X.kw X.Cylinder, size: [ 1.0, 0.05 ] } unit
+                        ]
+                    ]
                 ]
-              ]
             ]
-          ]
         ]

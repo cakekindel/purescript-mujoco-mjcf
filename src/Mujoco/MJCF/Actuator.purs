@@ -52,6 +52,7 @@ type Props_general =
   , body :: String
   | Common ()
   )
+
 general = tagNoContent @Props_general "general" :: TagNoContent Props_general
 
 type Props_adhesion =
@@ -59,6 +60,7 @@ type Props_adhesion =
   , gain :: Real
   | CommonMin ()
   )
+
 adhesion = tagNoContent @Props_adhesion "adhesion" :: TagNoContent Props_adhesion
 
 type Props_plugin =
@@ -72,6 +74,7 @@ type Props_plugin =
   , plugin :: String
   | Common ()
   )
+
 plugin = tagNoContent @Props_plugin "plugin" :: TagNoContent Props_plugin
 
 type Props_motor = Common ()
@@ -85,12 +88,14 @@ type Props_position =
   , inheritrange :: Real
   | Common ()
   )
+
 position = tagNoContent @Props_position "position" :: TagNoContent Props_position
 
 type Props_velocity =
   ( kv :: Real
   | Common ()
   )
+
 velocity = tagNoContent @Props_velocity "velocity" :: TagNoContent Props_velocity
 
 type Props_intvelocity =
@@ -101,12 +106,14 @@ type Props_intvelocity =
   , actrange :: Real /\ Real
   | Common ()
   )
+
 intvelocity = tagNoContent @Props_intvelocity "intvelocity" :: TagNoContent Props_intvelocity
 
 type Props_damper =
   ( kv :: Real
   | Common ()
   )
+
 damper = tagNoContent @Props_damper "damper" :: TagNoContent Props_damper
 
 type Props_cylinder =
@@ -116,6 +123,7 @@ type Props_cylinder =
   , bias :: Vec Real
   | Common ()
   )
+
 cylinder = tagNoContent @Props_cylinder "cylinder" :: TagNoContent Props_cylinder
 
 type Props_muscle =
@@ -131,4 +139,5 @@ type Props_muscle =
   , fvmax :: Real
   | Common ()
   )
+
 muscle = tagNoContent @Props_muscle "muscle" :: TagNoContent Props_muscle

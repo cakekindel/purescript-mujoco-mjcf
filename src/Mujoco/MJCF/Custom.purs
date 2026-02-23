@@ -9,12 +9,14 @@ type Props_numeric =
   , size :: Int
   , data :: Array Real
   )
+
 numeric = tagNoContent @Props_numeric "numeric" :: TagNoContent Props_numeric
 
 type Props_text =
   ( name :: String
   , data :: String
   )
+
 text = tagNoContent @Props_text "text" :: TagNoContent Props_text
 
 type Props_tuple = (name :: String)
@@ -25,4 +27,5 @@ type Props_element =
   , objname :: String
   , prm :: Real
   )
+
 element = tagNoContent @Props_element "element" :: TagNoContent Props_element

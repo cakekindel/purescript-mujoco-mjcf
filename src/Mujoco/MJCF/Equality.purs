@@ -20,6 +20,7 @@ type Props_connect =
   , site2 :: String
   | Common ()
   )
+
 connect = tag @Props_connect "connect" :: Tag Props_connect
 
 type Props_weld =
@@ -32,6 +33,7 @@ type Props_weld =
   , torquescale :: Real
   | Common ()
   )
+
 weld = tagNoContent @Props_weld "weld" :: TagNoContent Props_weld
 
 type Props_joint =
@@ -40,6 +42,7 @@ type Props_joint =
   , polycoef :: Vec5 Real
   | Common ()
   )
+
 joint = tagNoContent @Props_joint "joint" :: TagNoContent Props_joint
 
 type Props_tendon =
@@ -48,16 +51,19 @@ type Props_tendon =
   , polycoef :: Vec5 Real
   | Common ()
   )
+
 tendon = tagNoContent @Props_tendon "tendon" :: TagNoContent Props_tendon
 
 type Props_flex =
   ( flex :: String
   | Common ()
   )
+
 flex = tagNoContent @Props_flex "flex" :: TagNoContent Props_flex
 
 type Props_flexvert =
   ( flex :: String
   | Common ()
   )
+
 flexvert = tagNoContent @Props_flexvert "flexvert" :: TagNoContent Props_flexvert

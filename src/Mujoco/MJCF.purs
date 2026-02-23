@@ -21,8 +21,7 @@ module Mujoco.MJCF
   , size
   , statistic
   , module X
-  )
-  where
+  ) where
 
 import Mujoco.MJCF.Prelude
 
@@ -75,6 +74,7 @@ type Props_option =
   , actuatorgroupdisable :: Array Int
   , solver :: Solver
   )
+
 option = tag @Props_option "mjcf:option" :: Tag Props_option
 
 type Props_flag =
@@ -104,6 +104,7 @@ type Props_flag =
   , multiccd :: EnableDisable
   , sleep :: EnableDisable
   )
+
 flag = tagNoContent @Props_flag "flag" :: TagNoContent Props_flag
 
 type Props_compiler =
@@ -128,6 +129,7 @@ type Props_compiler =
   , inertiagrouprange :: Int /\ Int
   , saveinertial :: Boolean
   )
+
 compiler = tagNoContent @Props_compiler "compiler" :: TagNoContent Props_compiler
 
 type Props_size =
@@ -146,6 +148,7 @@ type Props_size =
   , nuser_actuator :: Int
   , nuser_sensor :: Int
   )
+
 size = tagNoContent @Props_size "size" :: TagNoContent Props_size
 
 type Props_statistic =
@@ -155,6 +158,7 @@ type Props_statistic =
   , extent :: Real
   , center :: Vec Real
   )
+
 statistic = tagNoContent @Props_statistic "statistic" :: TagNoContent Props_statistic
 
 type Props_plugin = (plugin :: String, instance :: String)

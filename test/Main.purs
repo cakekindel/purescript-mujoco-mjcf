@@ -28,7 +28,7 @@ main =
   launchAff_ do
     mj <- Wasm.loadMujoco
     liftEffect
-      $ runSpecAndExitProcess [consoleReporter]
+      $ runSpecAndExitProcess [ consoleReporter ]
       $ mjcf mj do
           Test.Mujoco.MJCF.spec
           Test.Mujoco.MJCF.XML.Prop.spec

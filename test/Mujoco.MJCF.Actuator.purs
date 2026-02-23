@@ -16,7 +16,7 @@ m a = X.mujoco {}
   , X.worldbody {}
       [ X.body { name: "b1", pos: 0.0 /\ 0.0 /\ 0.5 }
           [ X.joint { name: "j1", type: X.kw X.Hinge, axis: 1.0 /\ 0.0 /\ 0.0 }
-          , X.geom { type: X.kw X.Sphere, size: [0.1, 0.0, 0.0] } unit
+          , X.geom { type: X.kw X.Sphere, size: [ 0.1, 0.0, 0.0 ] } unit
           ]
       ]
   , a
@@ -43,7 +43,7 @@ spec =
 
       it "ctrlrange + gear" $ parseOk $ m $
         Act.actuator {}
-          [ Act.motor { name: "a_motor2", joint: "j1", ctrllimited: X.true_, ctrlrange: (-1.0) /\ 1.0, gear: [100.0, 0.0, 0.0, 0.0, 0.0, 0.0] } ]
+          [ Act.motor { name: "a_motor2", joint: "j1", ctrllimited: X.true_, ctrlrange: (-1.0) /\ 1.0, gear: [ 100.0, 0.0, 0.0, 0.0, 0.0, 0.0 ] } ]
 
     describe "position" do
       it "basic" $ parseOk $ m $

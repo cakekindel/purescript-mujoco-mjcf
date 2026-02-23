@@ -27,6 +27,7 @@ type Props_mesh =
   , params :: Array Real
   , material :: String
   )
+
 mesh = tag @Props_mesh "mesh" :: Tag Props_mesh
 
 type Props_hfield =
@@ -38,6 +39,7 @@ type Props_hfield =
   , elevation :: Array Real
   , size :: Vec4 Real
   )
+
 hfield = tagNoContent @Props_hfield "hfield" :: TagNoContent Props_hfield
 
 type TextureType = Kw.TwoD \/ Kw.Cube \/ Kw.Skybox
@@ -71,6 +73,7 @@ type Props_texture =
   , vflip :: Boolean
   , nchannel :: Int
   )
+
 texture = tagNoContent @Props_texture "texture" :: TagNoContent Props_texture
 
 type Props_material =
@@ -87,6 +90,7 @@ type Props_material =
   , roughness :: Real
   , rgba :: Vec4 Real
   )
+
 material = tag @Props_material "material" :: Tag Props_material
 
 type LayerRole = Kw.Rgb \/ Kw.Normal \/ Kw.Occlusion \/ Kw.Roughness \/ Kw.Metallic \/ Kw.Opacity \/ Kw.Emissive \/ Kw.Orm \/ Kw.Rgba
@@ -95,6 +99,7 @@ type Props_layer =
   ( texture :: String
   , role :: LayerRole
   )
+
 layer = tagNoContent @Props_layer "layer" :: TagNoContent Props_layer
 
 type Props_model =
@@ -102,4 +107,5 @@ type Props_model =
   , file :: String
   , content_type :: String
   )
+
 model = tagNoContent @Props_model "model" :: TagNoContent Props_model

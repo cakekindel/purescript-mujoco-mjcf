@@ -17,13 +17,13 @@ m s = X.mujoco {}
   , X.worldbody {}
       [ X.body { name: "b1", pos: 0.0 /\ 0.0 /\ 0.5 }
           [ X.joint { name: "j1", type: X.kw X.Hinge, axis: 1.0 /\ 0.0 /\ 0.0 }
-          , X.geom { name: "g1", type: X.kw X.Sphere, size: [0.1, 0.0, 0.0] } unit
+          , X.geom { name: "g1", type: X.kw X.Sphere, size: [ 0.1, 0.0, 0.0 ] } unit
           , X.site { name: "s1", pos: 0.0 /\ 0.0 /\ 0.1, size: 0.01 /\ 0.01 /\ 0.01 }
           , X.camera { name: "cam1", pos: 0.0 /\ (-1.0) /\ 0.5, fovy: 60.0 }
           ]
       , X.body { name: "b2", pos: 1.0 /\ 0.0 /\ 0.5 }
           [ X.joint { name: "j2", type: X.kw X.Hinge, axis: 1.0 /\ 0.0 /\ 0.0 }
-          , X.geom { name: "g2", type: X.kw X.Sphere, size: [0.1, 0.0, 0.0] } unit
+          , X.geom { name: "g2", type: X.kw X.Sphere, size: [ 0.1, 0.0, 0.0 ] } unit
           , X.site { name: "s2", pos: 0.0 /\ 0.0 /\ 0.1, size: 0.01 /\ 0.01 /\ 0.01 }
           ]
       ]

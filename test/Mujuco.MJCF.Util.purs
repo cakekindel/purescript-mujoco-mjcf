@@ -23,6 +23,7 @@ import Test.Spec (SpecT, Spec, hoistSpec)
 
 type T' = { mj :: Mujoco, dbg :: Boolean }
 newtype T a = T (ReaderT T' Aff a)
+
 derive instance Newtype (T a) _
 derive newtype instance Functor T
 derive newtype instance Applicative T

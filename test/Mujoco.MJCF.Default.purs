@@ -23,7 +23,7 @@ spec =
 
     it "geom defaults" $ parseOk $ X.mujoco {}
       [ Def.default {}
-          [ Def.geom { type: X.kw X.Sphere, size: [0.1, 0.0, 0.0], rgba: 1.0 /\ 0.0 /\ 0.0 /\ 1.0 } ]
+          [ Def.geom { type: X.kw X.Sphere, size: [ 0.1, 0.0, 0.0 ], rgba: 1.0 /\ 0.0 /\ 0.0 /\ 1.0 } ]
       , X.worldbody {}
           [ X.geom {} unit ]
       ]
@@ -32,7 +32,7 @@ spec =
       [ X.compiler { inertiafromgeom: X.true_ }
       , Def.default {}
           [ Def.joint { type: X.kw X.Hinge, damping: 1.0, stiffness: 10.0 }
-          , Def.geom { type: X.kw X.Capsule, size: [0.05, 0.2] }
+          , Def.geom { type: X.kw X.Capsule, size: [ 0.05, 0.2 ] }
           ]
       , X.worldbody {}
           [ X.body { pos: 0.0 /\ 0.0 /\ 0.5 }
@@ -50,7 +50,7 @@ spec =
               [ Def.geom { rgba: 1.0 /\ 0.0 /\ 0.0 /\ 1.0 } ]
           ]
       , X.worldbody {}
-          [ X.geom { type: X.kw X.Sphere, size: [0.1, 0.0, 0.0] } unit ]
+          [ X.geom { type: X.kw X.Sphere, size: [ 0.1, 0.0, 0.0 ] } unit ]
       ]
 
     it "site defaults" $ parseOk $ X.mujoco {}
@@ -81,7 +81,7 @@ spec =
       , X.worldbody {}
           [ X.body { pos: 0.0 /\ 0.0 /\ 0.5 }
               [ X.joint { name: "j1", type: X.kw X.Hinge, axis: 1.0 /\ 0.0 /\ 0.0 }
-              , X.geom { type: X.kw X.Sphere, size: [0.1, 0.0, 0.0] } unit
+              , X.geom { type: X.kw X.Sphere, size: [ 0.1, 0.0, 0.0 ] } unit
               ]
           ]
       ]
