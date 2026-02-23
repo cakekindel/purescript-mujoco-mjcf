@@ -7,7 +7,7 @@ import Control.Promise as Promise
 import Effect (Effect)
 import Effect.Aff (Aff)
 import Effect.Class (liftEffect)
-import Mujoco.XML.Node as XML
+import Mujoco.MJCF.XML as XML
 
 foreign import data Mujoco :: Type
 foreign import data Spec :: Type

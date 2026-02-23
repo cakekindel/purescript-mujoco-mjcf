@@ -1,4 +1,4 @@
-module Mujoco.XML.Node.Prop (class Serialize, serialize, serializeProps, class SerializeProps', serializeProps', renames) where
+module Mujoco.MJCF.XML.Prop (class Serialize, serialize, serializeProps, class SerializeProps', serializeProps', renames) where
 
 import Prelude
 

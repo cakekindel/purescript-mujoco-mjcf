@@ -24,15 +24,15 @@ module Mujoco.MJCF
   )
   where
 
-import Mujoco.Prelude
+import Mujoco.MJCF.Prelude
 
 import Mujoco.MJCF.Keyword as Kw
+import Mujoco.MJCF.Keyframe as X
 import Mujoco.MJCF.Keyword as X
 import Mujoco.MJCF.Asset as X
 import Mujoco.MJCF.Body as X
-import Mujoco.MJCF.Common as X
 import Mujoco.MJCF.Contact as X
-import Mujoco.XML.Node (empty, text, fragment) as X
+import Mujoco.MJCF.XML (empty, text, fragment) as X
 
 type Props_mujoco = (model :: String)
 mujoco = tag @Props_mujoco "mujoco" :: Tag Props_mujoco

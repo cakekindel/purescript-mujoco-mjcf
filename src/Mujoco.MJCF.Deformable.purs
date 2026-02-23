@@ -1,5 +1,5 @@
 module Mujoco.MJCF.Deformable where
 
-import Mujoco.Prelude
+import Mujoco.MJCF.Prelude
 
 deformable = tag @() "deformable" :: Tag ()

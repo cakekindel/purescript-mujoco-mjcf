@@ -1,6 +1,6 @@
 module Mujoco.MJCF.Geom where
 
-import Mujoco.Prelude
+import Mujoco.MJCF.Prelude
 import Mujoco.MJCF.Keyword as Kw
 
 type Contact r =
@@ -46,7 +46,7 @@ type Props_geom =
     + Contact
     + ContactSpacing
     + Solver
-    + Pos
+    + Positioned
     + Oriented ()
     )
 geom = tag @Props_geom "geom" :: Tag Props_geom

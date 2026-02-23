@@ -1,6 +1,6 @@
 module Mujoco.MJCF.Contact where
 
-import Mujoco.Prelude
+import Mujoco.MJCF.Prelude
 
 contact = tag @() "contact" :: Tag ()
 

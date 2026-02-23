@@ -1,6 +1,6 @@
 module Mujoco.MJCF.Equality where
 
-import Mujoco.Prelude
+import Mujoco.MJCF.Prelude
 
 type Common r =
   ( class :: String

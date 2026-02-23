@@ -1,6 +1,6 @@
 module Mujoco.MJCF.Deformable.Skin where
 
-import Mujoco.Prelude
+import Mujoco.MJCF.Prelude
 
 type Props_skin =
   ( name :: String

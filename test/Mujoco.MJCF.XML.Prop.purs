@@ -1,9 +1,9 @@
-module Test.Mujoco.XML.Node.Prop where
+module Test.Mujoco.MJCF.XML.Prop where
 
 import Prelude
 
 import Data.Tuple.Nested (type (/\), (/\))
-import Mujoco.XML.Node.Prop (class SerializeProps', serialize, serializeProps)
+import Mujoco.MJCF.XML.Prop (class SerializeProps', serialize, serializeProps)
 import Prim.Row (class Union)
 import Prim.RowList (class RowToList)
 import Test.Spec (Spec, describe, it)
@@ -22,7 +22,7 @@ type Props =
 
 spec :: Spec Unit
 spec =
-  describe "Mujoco.XML.Node.Prop" do
+  describe "Mujoco.MJCF.XML.Prop" do
     describe "Serialize" do
       it "serializes boolean" $ serialize true `shouldEqual` "true"
       it "serializes string" $ serialize "a" `shouldEqual` "a"

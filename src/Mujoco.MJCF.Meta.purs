@@ -1,6 +1,6 @@
 module Mujoco.MJCF.Meta where
 
-import Mujoco.Prelude
+import Mujoco.MJCF.Prelude
 
 type Props_frame :: Row Type
 type Props_frame = ()

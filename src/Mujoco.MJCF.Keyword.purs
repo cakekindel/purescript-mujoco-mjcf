@@ -1,7 +1,7 @@
 module Mujoco.MJCF.Keyword where
 
 import Data.Either.Inject (class Inject, inj)
-import Mujoco.XML.Node.Prop (class Serialize)
+import Mujoco.MJCF.XML.Prop (class Serialize)
 
 kw :: forall kw sum. Inject kw sum => kw -> sum
 kw = inj
@@ -254,3 +254,69 @@ instance Serialize Radian where serialize Radian = "radian"
 
 data Degree = Degree
 instance Serialize Degree where serialize Degree = "degree"
+
+data Dist = Dist
+instance Serialize Dist where serialize Dist = "dist"
+
+data Dir = Dir
+instance Serialize Dir where serialize Dir = "dir"
+
+data Origin = Origin
+instance Serialize Origin where serialize Origin = "origin"
+
+data Body = Body
+instance Serialize Body where serialize Body = "body"
+
+data Xbody = Xbody
+instance Serialize Xbody where serialize Xbody = "xbody"
+
+data Geom = Geom
+instance Serialize Geom where serialize Geom = "geom"
+
+data Site = Site
+instance Serialize Site where serialize Site = "site"
+
+data Camera = Camera
+instance Serialize Camera where serialize Camera = "camera"
+
+data Found = Found
+instance Serialize Found where serialize Found = "found"
+
+data Force = Force
+instance Serialize Force where serialize Force = "force"
+
+data Torque = Torque
+instance Serialize Torque where serialize Torque = "torque"
+
+data Pos = Pos
+instance Serialize Pos where serialize Pos = "pos"
+
+data Vel = Vel
+instance Serialize Vel where serialize Vel = "vel"
+
+data Acc = Acc
+instance Serialize Acc where serialize Acc = "acc"
+
+data Tangent = Tangent
+instance Serialize Tangent where serialize Tangent = "tangent"
+
+data MinDist = MinDist
+instance Serialize MinDist where serialize MinDist = "mindist"
+
+data MaxForce = MaxForce
+instance Serialize MaxForce where serialize MaxForce = "maxforce"
+
+data NetForce = NetForce
+instance Serialize NetForce where serialize NetForce = "netforce"
+
+data Real = Real
+instance Serialize Real where serialize Real = "real"
+
+data Positive = Positive
+instance Serialize Positive where serialize Positive = "positive"
+
+data Axis = Axis
+instance Serialize Axis where serialize Axis = "axis"
+
+data Quaternion = Quaternion
+instance Serialize Quaternion where serialize Quaternion = "quaternion"

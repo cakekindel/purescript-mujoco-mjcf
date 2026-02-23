@@ -1,6 +1,6 @@
 module Mujoco.MJCF.Actuator where
 
-import Mujoco.Prelude
+import Mujoco.MJCF.Prelude
 import Mujoco.MJCF.Keyword as Kw
 
 actuator = tag @() "actuator" :: Tag ()

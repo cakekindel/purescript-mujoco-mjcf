@@ -1,4 +1,4 @@
-module Mujoco.XML.Node
+module Mujoco.MJCF.XML
   ( Node
   , render
   , tag
@@ -23,8 +23,8 @@ import Data.Tuple.Nested ((/\))
 import Elmish.HTML (empty, fragment, text) as HTML
 import Elmish.HTML.Internal (tag, tagNoContent) as HTML
 import Elmish.React (ReactElement)
-import Mujoco.XML.Node.Prop (class SerializeProps', serializeProps)
-import Mujoco.XML.Node.Prop as Prop
+import Mujoco.MJCF.XML.Prop (class SerializeProps', serializeProps)
+import Mujoco.MJCF.XML.Prop as Prop
 import Prim.Row (class Union)
 import Prim.RowList (class RowToList)
 import Unsafe.Coerce (unsafeCoerce)

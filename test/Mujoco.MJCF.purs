@@ -10,8 +10,8 @@ import Effect.Class (liftEffect)
 import Mujoco.MJCF as X
 import Mujoco.MJCF.Geom as X.G
 import Mujoco.Wasm (renderSpec)
-import Mujoco.XML.Node (Node)
-import Mujoco.XML.Node as XML
+import Mujoco.MJCF.XML (Node)
+import Mujoco.MJCF.XML as XML
 import Test.Assert (assertTrue)
 import Test.Spec (Spec, describe, it)
 

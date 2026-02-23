@@ -29,7 +29,7 @@ module Mujoco.MJCF.Body
   )
   where
 
-import Mujoco.Prelude
+import Mujoco.MJCF.Prelude
 
 import Mujoco.MJCF.Geom (Props_geom, geom) as X
 import Mujoco.MJCF.Keyword as Kw

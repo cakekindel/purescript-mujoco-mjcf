@@ -1,6 +1,6 @@
 module Mujoco.MJCF.Deformable.Flex where
 
-import Mujoco.Prelude
+import Mujoco.MJCF.Prelude
 import Mujoco.MJCF.Geom as Geom
 
 type Props_flex =

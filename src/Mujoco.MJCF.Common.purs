@@ -1,7 +1,7 @@
 module Mujoco.MJCF.Common
   ( Named
   , Oriented
-  , Pos
+  , Positioned
   , Real
   , Vec
   , Vec4
@@ -12,7 +12,7 @@ module Mujoco.MJCF.Common
 import Data.Tuple.Nested (type (/\))
 
 type Named r = (name :: String | r)
-type Pos r = (pos :: Vec Real | r)
+type Positioned r = (pos :: Vec Real | r)
 type Oriented r =
   ( quat :: Vec4 Real
   , axisangle :: Vec4 Real
