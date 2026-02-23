@@ -6,7 +6,8 @@ import Data.Tuple.Nested (type (/\), (/\))
 import Mujoco.MJCF.XML.Prop (class SerializeProps', serialize, serializeProps)
 import Prim.Row (class Union)
 import Prim.RowList (class RowToList)
-import Test.Spec (Spec, describe, it)
+import Test.Mujoco.MJCF.Util (MjcfSpec)
+import Test.Spec (describe, it)
 import Test.Spec.Assertions (shouldEqual)
 import Unsafe.Coerce (unsafeCoerce)
 
@@ -20,7 +21,7 @@ type Props =
   , bool :: Boolean
   )
 
-spec :: Spec Unit
+spec :: MjcfSpec Unit
 spec =
   describe "Mujoco.MJCF.XML.Prop" do
     describe "Serialize" do

@@ -20,7 +20,7 @@ import Type.Prelude (Proxy(..))
 import Unsafe.Coerce (unsafeCoerce)
 
 renames :: Map String String
-renames = Map.fromFoldable ["size" /\ "mjcf:size"]
+renames = Map.fromFoldable ["size" /\ "mjcf:size", "class" /\ "mjcf:class"]
 
 class Serialize a where
   serialize :: a -> String

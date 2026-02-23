@@ -32,6 +32,9 @@ import Mujoco.MJCF.Keyword as X
 import Mujoco.MJCF.Asset as X
 import Mujoco.MJCF.Body as X
 import Mujoco.MJCF.Contact as X
+import Mujoco.MJCF.Sensor (sensor) as X
+import Mujoco.MJCF.Actuator (actuator) as X
+import Mujoco.MJCF.Tendon (tendon) as X
 import Mujoco.MJCF.XML (empty, text, fragment) as X
 
 type Props_mujoco = (model :: String)

@@ -4,6 +4,8 @@ import Mujoco.MJCF.Prelude
 
 import Mujoco.MJCF.Keyword as Kw
 
+sensor = tag @() "sensor" :: Tag ()
+
 type ObjType = Kw.Body \/ Kw.Xbody \/ Kw.Geom \/ Kw.Site \/ Kw.Camera
 
 type Common' r =

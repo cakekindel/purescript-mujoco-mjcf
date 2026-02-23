@@ -4,6 +4,8 @@ import Mujoco.MJCF.Prelude
 
 import Mujoco.MJCF.Keyword as Kw
 
+tendon = tag @() "tendon" :: Tag ()
+
 type Common r =
   ( class :: String
   , group :: Int
