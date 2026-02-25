@@ -8,7 +8,8 @@ import Data.Int as Int
 import Data.Map (Map)
 import Data.Map as Map
 import Data.Maybe (fromMaybe)
-import Data.Number.Format (toString) as Number
+import Data.Number.Format (precision)
+import Data.Number.Format (toString, toStringWith) as Number
 import Data.Symbol (class IsSymbol, reflectSymbol)
 import Data.Tuple (Tuple)
 import Data.Tuple.Nested ((/\))
@@ -30,7 +31,7 @@ instance Serialize String where
 else instance Serialize Int where
   serialize = Int.toStringAs Int.decimal
 else instance Serialize Number where
-  serialize = Number.toString
+  serialize = Number.toStringWith (precision 5)
 else instance Serialize Boolean where
   serialize = show
 else instance (Serialize a, Serialize b) => Serialize (Either a b) where
